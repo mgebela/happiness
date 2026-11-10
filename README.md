@@ -11,8 +11,9 @@ npm install
 npm run dev
 ```
 
-Otvori URL koji Vite ispiše (`http://localhost:5173/happiness/`).
+Otvori URL koji Vite ispiše (`http://localhost:5173/`).
 
-## GitHub Pages
+## Live
 
-https://mgebela.github.io/happiness/
+- https://happiness-by-tihana.netlify.app/
+- https://mgebela.github.io/happiness/
