@@ -1,63 +1,65 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Logo, Mark } from "./Logo";
 
 const base = import.meta.env.BASE_URL;
-
 const photo = (name: string) => `${base}photos/${name}`;
 
-const services = [
+const chapters = [
   {
-    id: "organizacija",
-    title: "Organizacija vjenčanja",
-    image: "service-organizacija.jpg",
-    text: "Ako želite potpuno bezbrižan proces planiranja, tu smo od prve ideje. Pomažem u odabiru lokacije, izvođača i svih važnih detalja, izrađujemo koncept i plan vjenčanja te koordiniram sve uključene. Vi donosite odluke, a ja brinem da se sve realizira bez stresa.",
-  },
-  {
-    id: "koordinacija",
-    title: "Koordinacija vjenčanja",
+    id: "vjencanja",
+    kicker: "Organizacija i koordinacija",
+    title: "Vjenčanja",
     image: "service-koordinacija.jpg",
-    text: "Za parove koji su već organizirali većinu svog vjenčanja, a žele profesionalnu podršku u završnoj fazi i na sam dan. Zajedno prolazimo sve detalje, izrađujemo jasan protokol i raspored, a na dan vjenčanja koordiniram uzvanike i izvođače. Vaše je samo da uživate.",
+    alt: "Mladenci uz prozor, u tihom trenutku prije slavlja",
+    paragraphs: [
+      "Ako želite potpuno bezbrižan proces, tu smo od prve ideje. Pomažem u odabiru lokacije, izvođača i svih važnih detalja, izrađujemo koncept i plan vjenčanja te koordiniram sve uključene. Vi donosite odluke, a ja brinem da se sve realizira bez stresa.",
+      "Za parove koji su već organizirali većinu dana, tu sam u završnoj fazi i na sam dan. Zajedno prolazimo detalje, izrađujemo jasan protokol i raspored, a na dan vjenčanja koordiniram uzvanike i izvođače. Vaše je samo da uživate.",
+    ],
+    more: "Konzultacije su tu za parove koji žele sami organizirati vjenčanje, uz stručne smjernice. Na sastanku prolazimo lokaciju, izvođače, raspored dana i budžet. Vi organizirate, a ja vas usmjeravam kroz proces.",
   },
   {
-    id: "maticar",
-    title: "Simbolični matičar",
+    id: "ceremonije",
+    kicker: "Simbolični matičar",
+    title: "Ceremonije",
     image: "service-maticar.jpg",
-    text: "Simbolična ceremonija daje vam slobodu da vjenčanje oblikujete onako kako želite — u prirodi, vinogradu, parku ili mjestu koje za vas ima značenje. Uz osobne zavjete, glazbu i pažljivo osmišljen govor, često postaje najemotivniji trenutak dana. Ceremoniju vodim i na engleskom jeziku.",
+    alt: "Simbolična ceremonija pod cvjetnim lukom",
+    paragraphs: [
+      "Simbolična ceremonija daje vam slobodu da vjenčanje oblikujete onako kako želite — u prirodi, vinogradu, parku ili mjestu koje za vas ima značenje.",
+      "Uz osobne zavjete, glazbu i pažljivo osmišljen govor, često postaje najemotivniji trenutak dana. Ceremoniju vodim i na engleskom jeziku.",
+    ],
   },
   {
-    id: "konzultacije",
-    title: "Konzultacije",
-    image: "service-konzultacije.jpg",
-    text: "Za parove koji žele sami organizirati vjenčanje, uz stručne smjernice. Na sastanku prolazimo lokaciju, izvođače, raspored dana i budžet. Dobivate jasne odgovore i praktične savjete. Vi organizirate, a ja vas usmjeravam kroz proces.",
-  },
-  {
-    id: "moderacija",
-    title: "Moderacija događanja",
-    image: "service-moderacija.jpg",
-    text: "Zahvaljujući godinama rada na radiju kao voditeljica i urednica, moderacija mi je prirodan dio posla. Vodim programe, predstavljam sudionike i brinem da događaj ima dobar ritam, jasnu komunikaciju i ugodnu atmosferu.",
-  },
-  {
-    id: "eventi",
-    title: "Organizacija evenata",
-    image: "service-eventi.jpg",
-    text: "Osim vjenčanja, Studio Happiness organizira privatna i poslovna događanja — od ideje i koncepta do realizacije. Cilj je događaj s jasnom pričom, dobrom atmosferom i profesionalnom organizacijom.",
+    id: "dogadanja",
+    kicker: "Eventi i moderacija",
+    title: "Događanja",
+    image: "closing.jpg",
+    alt: "Pogled iz zraka na ceremoniju u vrtu",
+    paragraphs: [
+      "Osim vjenčanja, Studio Happiness organizira privatna i poslovna događanja — od ideje i koncepta do realizacije. Cilj je događaj s jasnom pričom, dobrom atmosferom i profesionalnom organizacijom.",
+      "Zahvaljujući godinama rada na radiju, moderacija mi je prirodan dio posla. Vodim programe, predstavljam sudionike i brinem da događaj ima dobar ritam i ugodnu atmosferu.",
+    ],
   },
 ];
 
-const gallery = [
-  "gallery-01.jpg",
-  "gallery-02.jpg",
-  "gallery-03.jpg",
-  "gallery-04.jpg",
-  "gallery-05.jpg",
-  "gallery-06.jpg",
-  "gallery-07.jpg",
-  "gallery-08.jpg",
+const moments = [
+  { src: "gallery-01.jpg", alt: "" },
+  { src: "gallery-03.jpg", alt: "" },
+  { src: "hero.jpg", alt: "" },
+  { src: "gallery-08.jpg", alt: "" },
 ];
 
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openChapter, setOpenChapter] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function closeMenu() {
     setMenuOpen(false);
@@ -70,14 +72,11 @@ export default function App() {
 
   return (
     <div className="site" id="pocetak">
-      <div className="brand-rail" aria-hidden="true">
-        <span>All about events</span>
-      </div>
-
-      <header className="nav">
+      <header className={`nav${menuOpen ? " is-open" : ""}${scrolled ? " is-scrolled" : ""}`}>
+        <span className="nav-side" />
         <Logo compact />
         <button
-          className="menu-toggle"
+          className={`menu-toggle${menuOpen ? " is-open" : ""}`}
           aria-expanded={menuOpen}
           aria-label="Izbornik"
           onClick={() => setMenuOpen((open) => !open)}
@@ -85,45 +84,42 @@ export default function App() {
           <i />
           <i />
         </button>
-        <nav className={menuOpen ? "open" : ""}>
-          <a href="#o-meni" onClick={closeMenu}>
-            O meni
-          </a>
-          <a href="#usluge" onClick={closeMenu}>
-            Usluge
-          </a>
-          <a href="#trenuci" onClick={closeMenu}>
-            Trenuci
-          </a>
-          <a href="#kontakt" onClick={closeMenu}>
-            Kontakt
-          </a>
-        </nav>
       </header>
+
+      {menuOpen && (
+        <div className="menu-overlay">
+          <nav>
+            <a href="#o-meni" onClick={closeMenu}>
+              O meni
+            </a>
+            <a href="#vjencanja" onClick={closeMenu}>
+              Vjenčanja
+            </a>
+            <a href="#ceremonije" onClick={closeMenu}>
+              Ceremonije
+            </a>
+            <a href="#dogadanja" onClick={closeMenu}>
+              Događanja
+            </a>
+            <a href="#kontakt" onClick={closeMenu}>
+              Upit
+            </a>
+          </nav>
+        </div>
+      )}
 
       <section className="hero">
         <img src={photo("hero.jpg")} alt="Mlada i djeveruše nazdravljaju na otvorenom" />
-        <div className="hero-copy">
+        <div className="hero-caption">
           <p className="eyebrow">All about events</p>
-          <h1>
-            Vjenčanja i događanja
-            <br />
-            koja se pamte.
-          </h1>
-          <p className="lede">
-            Studio Happiness iz Osijeka. Više od 15 godina uz parove i klijente — od prve ideje do
-            posljednjeg plesa.
-          </p>
-          <a className="btn" href="#kontakt">
-            Zakažite razgovor
-          </a>
+          <h1>Vjenčanja i događanja koja se pamte</h1>
         </div>
       </section>
 
-      <section className="about" id="o-meni">
-        <div className="about-copy">
-          <p className="eyebrow">Osnivačica</p>
-          <h2 className="script">Ja sam Tihana</h2>
+      <section className="manifesto" id="o-meni">
+        <p className="eyebrow">Studio Happiness · Osijek</p>
+        <h2>Svaka priča zaslužuje pažnju</h2>
+        <div className="manifesto-copy">
           <p>
             Ja sam Tihana Tomljanović, osnivačica Studija Happiness iz Osijeka. Već više od 15 godina
             moj posao je stvarati vjenčanja i događanja koja ljudi pamte cijeli život. Iza mene su
@@ -133,59 +129,63 @@ export default function App() {
           </p>
           <p>
             Svaki događaj za mene je nova priča. Upravo zato svakom paru ili klijentu pristupam
-            individualno, s puno pažnje prema detaljima i atmosferi koju zajedno stvaramo. Povjerenje,
-            otvorena komunikacija i dobra energija temelj su svake uspješne suradnje.
+            individualno, s puno pažnje prema detaljima i atmosferi koju zajedno stvaramo.
+            Povjerenje, otvorena komunikacija i dobra energija temelj su svake uspješne suradnje.
           </p>
-          <p className="closing-line">Najljepši dio mog posla su ljudi i njihove priče.</p>
+          <p>Najljepši dio mog posla su ljudi i njihove priče.</p>
         </div>
-        <figure className="about-photo">
+        <figure className="feature-photo">
           <img src={photo("tihana.jpg")} alt="Tihana Tomljanović uz cvjetni aranžman" />
-          <span className="pixel-dot" aria-hidden="true" />
         </figure>
       </section>
 
-      <section className="services" id="usluge">
-        <div className="section-head">
-          <p className="eyebrow">Usluge</p>
-          <h2>Kako mogu biti uz&nbsp;vas.</h2>
-        </div>
-        <div className="service-list">
-          {services.map((service) => (
-            <article className="service" key={service.id} id={service.id}>
-              <div className="service-image">
-                <img src={photo(service.image)} alt="" />
-              </div>
-              <div className="service-body">
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      {chapters.map((chapter) => (
+        <section className="chapter" id={chapter.id} key={chapter.id}>
+          <figure className="feature-photo">
+            <img src={photo(chapter.image)} alt={chapter.alt} />
+          </figure>
+          <div className="chapter-copy">
+            <p className="eyebrow">{chapter.kicker}</p>
+            <h2>{chapter.title}</h2>
+            {chapter.paragraphs.map((text) => (
+              <p key={text.slice(0, 24)}>{text}</p>
+            ))}
+            {chapter.more && (
+              <>
+                <button
+                  className="text-link"
+                  onClick={() =>
+                    setOpenChapter((current) => (current === chapter.id ? null : chapter.id))
+                  }
+                >
+                  {openChapter === chapter.id ? "Zatvorite" : "Saznajte više"}
+                </button>
+                {openChapter === chapter.id && <p className="more">{chapter.more}</p>}
+              </>
+            )}
+          </div>
+        </section>
+      ))}
 
-      <section className="gallery" id="trenuci">
-        <div className="section-head">
-          <p className="eyebrow">Trenuci</p>
-          <h2>Priče koje smo već ispričali</h2>
-        </div>
-        <div className="mosaic">
-          {gallery.map((name, index) => (
-            <figure key={name} className={`tile t${index + 1}`}>
-              <img src={photo(name)} alt="" />
+      <section className="moments" id="trenuci">
+        <p className="eyebrow">Trenuci</p>
+        <h2>Priče koje smo već ispričali</h2>
+        <div className="moment-grid">
+          {moments.map((item) => (
+            <figure key={item.src} className="feature-photo">
+              <img src={photo(item.src)} alt={item.alt} />
             </figure>
           ))}
         </div>
       </section>
 
-      <section className="contact" id="kontakt">
-        <div className="contact-copy">
-          <p className="eyebrow">Kontakt</p>
-          <h2>Recite mi svoju priču.</h2>
-          <p>
-            Javite se za vjenčanje, ceremoniju ili event. Odgovaram osobno — bez obrazaca koji idu u
-            prazno.
-          </p>
+      <section className="enquire" id="kontakt">
+        <p className="eyebrow">Upit</p>
+        <h2>Priča počinje ovdje</h2>
+        <p className="enquire-lede">
+          Javite se za vjenčanje, ceremoniju ili event. Odgovaram osobno.
+        </p>
+        <div className="enquire-grid">
           <ul className="contact-list">
             <li>
               <span className="label">Telefon</span>
@@ -206,66 +206,55 @@ export default function App() {
               Franjevačka 1b, 31000 Osijek
             </li>
           </ul>
-        </div>
-        {sent ? (
-          <div className="thanks">
-            <Mark />
-            <h3>Hvala vam.</h3>
-            <p>Poruka je zabilježena na ovom uređaju. Tihana će vam se javiti čim povežemo pravi inbox.</p>
-          </div>
-        ) : (
-          <form onSubmit={onInquire} noValidate>
-            <label>
-              Ime i prezime
-              <input name="name" required placeholder="Vaše ime" />
-            </label>
-            <label>
-              E-mail
-              <input name="email" type="email" required placeholder="vas@email.com" />
-            </label>
-            <label>
-              Telefon
-              <input name="phone" type="tel" placeholder="091 …" />
-            </label>
-            <label>
-              Usluga
-              <select name="service" defaultValue="organizacija">
-                <option value="organizacija">Organizacija vjenčanja</option>
-                <option value="koordinacija">Koordinacija vjenčanja</option>
-                <option value="maticar">Simbolični matičar</option>
-                <option value="konzultacije">Konzultacije</option>
-                <option value="moderacija">Moderacija</option>
-                <option value="eventi">Organizacija evenata</option>
-              </select>
-            </label>
-            <label>
-              Datum događaja
-              <input name="date" type="date" />
-            </label>
-            <label className="full">
-              Poruka
-              <textarea name="note" required placeholder="Lokacija, broj gostiju, što vam je važno…" />
-            </label>
-            <button className="btn" type="submit" onClick={() => setSent(true)}>
-              Pošaljite upit
-            </button>
-          </form>
-        )}
-      </section>
-
-      <section className="closing">
-        <img src={photo("closing.jpg")} alt="Pogled iz zraka na ceremoniju u vrtu" />
-        <div className="closing-copy">
-          <p className="eyebrow">Happiness by Tihana</p>
-          <blockquote>
-            Jer svaki poseban događaj počinje dobrom energijom i pravim ljudima.
-          </blockquote>
-          <p className="sign">Tihana</p>
+          {sent ? (
+            <div className="thanks">
+              <Mark />
+              <h3>Hvala vam.</h3>
+              <p>Poruka je zabilježena. Javit ću se čim povežemo pravi inbox.</p>
+            </div>
+          ) : (
+            <form onSubmit={onInquire} noValidate>
+              <label>
+                Ime i prezime
+                <input name="name" required placeholder="Vaše ime" />
+              </label>
+              <label>
+                E-mail
+                <input name="email" type="email" required placeholder="vas@email.com" />
+              </label>
+              <label>
+                Usluga
+                <select name="service" defaultValue="vjencanja">
+                  <option value="vjencanja">Vjenčanja</option>
+                  <option value="ceremonije">Ceremonije</option>
+                  <option value="dogadanja">Događanja</option>
+                  <option value="konzultacije">Konzultacije</option>
+                </select>
+              </label>
+              <label>
+                Datum
+                <input name="date" type="date" />
+              </label>
+              <label className="full">
+                Poruka
+                <textarea name="note" required placeholder="Lokacija, broj gostiju, što vam je važno…" />
+              </label>
+              <button className="btn" type="submit" onClick={() => setSent(true)}>
+                Pošaljite upit
+              </button>
+            </form>
+          )}
         </div>
       </section>
 
       <footer className="footer">
-        <Logo compact />
+        <nav>
+          <a href="#vjencanja">Vjenčanja</a>
+          <a href="#ceremonije">Ceremonije</a>
+          <a href="#dogadanja">Događanja</a>
+          <a href="#o-meni">O meni</a>
+          <a href="#kontakt">Upit</a>
+        </nav>
         <p>Studio Happiness · Osijek · All about events</p>
       </footer>
     </div>
