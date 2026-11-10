@@ -1,26 +1,18 @@
-# Happiness
+# Happiness by Tihana
 
-A wedding planner webpage: an invitation for guests, and a private planner for the couple.
+Web stranica Studija Happiness — wedding & event studio iz Osijeka.
 
-## What’s inside
+Brand prati knjigu grafičkih standarda: pixel T, teal `#7AB7AC`, charcoal `#2D2C2E`, i fotografije iz Tihanina portfolia.
 
-- Invitation with names, date, countdown, schedule, venue notes, and RSVP
-- Planner for wedding details, checklist, budget, and guest list
-- Everything saves in the browser (`localStorage`) so you can try it without a backend
-
-Edit the couple names, date, and venue from the **Plan** tab. Those details update the public invitation immediately.
-
-## Local development
+## Lokalno
 
 ```bash
 npm install
 npm run dev
 ```
 
-Then open the URL Vite prints (usually `http://localhost:5173/happiness/`).
+Otvori URL koji Vite ispiše (`http://localhost:5173/happiness/`).
 
 ## GitHub Pages
-
-Pushes to `main` build and publish the site to GitHub Pages at:
 
 https://mgebela.github.io/happiness/
