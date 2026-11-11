@@ -7,7 +7,7 @@ type LockupProps = {
   className?: string;
 };
 
-const TEAL = ["#7AB7AC", "#9CCBC3", "#BDDDD6", "#DDEEEA"];
+const TEAL = ["#7AB7AD", "#97C7BF", "#C7E1DD", "#E2EFED"];
 
 export function Mark({ className = "" }: { className?: string }) {
   return (

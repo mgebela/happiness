@@ -1,12 +1,15 @@
 :root {
-  --teal: #7ab7ac;
-  --teal-2: #9ccbc3;
-  --teal-3: #bdddd6;
-  --teal-4: #ddeeea;
+  --teal: #7ab7ad;
+  --teal-2: #97c7bf;
+  --teal-3: #c7e1dd;
+  --teal-4: #e2efed;
+  --accent: #506b67;
+  --sage-deep: #4a615e;
+  --sage-hover: #445654;
   --ink: #2d2c2e;
   --midnight: #2d2c2e;
   --paper: #eeedea;
-  --sage: #86b4ab;
+  --sage: #7ab7ad;
   --white: #ffffff;
   --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -99,7 +102,7 @@ video {
 }
 
 :focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
@@ -199,12 +202,12 @@ video {
 .logo-by em,
 .logo-tag em {
   font-style: normal;
-  color: var(--teal);
+  color: var(--accent);
 }
 
 .logo-tag {
   margin-top: 0.28rem;
-  font-size: 0.52rem;
+  font-size: 0.62rem;
   letter-spacing: 0.22em;
 }
 
@@ -283,7 +286,7 @@ video {
   bottom: 0.2rem;
   width: 0;
   height: 1px;
-  background: var(--teal);
+  background: var(--accent);
   transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -291,7 +294,7 @@ video {
 .overview-nav a:focus-visible,
 .has-reveal .overview-nav a.is-visible:hover,
 .has-reveal .overview-nav a.is-visible:focus-visible {
-  color: var(--teal);
+  color: var(--accent);
   transform: translateX(0.4rem);
 }
 
@@ -301,11 +304,14 @@ video {
 }
 
 .text-cta:hover {
-  color: var(--teal);
+  color: var(--accent);
 }
 
-.footer a:hover {
-  opacity: 0.75;
+.footer a:hover,
+.footer a:focus-visible {
+  color: var(--paper);
+  text-decoration: underline;
+  text-underline-offset: 0.28em;
 }
 
 .film {
@@ -335,7 +341,7 @@ video {
 
 .label {
   margin: 0 0 1.6rem;
-  color: var(--teal);
+  color: var(--accent);
 }
 
 .lede {
@@ -392,7 +398,7 @@ video {
 
 .back-link:hover,
 .back-link:focus-visible {
-  color: var(--teal);
+  color: var(--accent);
   transform: translateX(-0.3rem);
 }
 
@@ -433,7 +439,7 @@ video {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(134, 180, 171, 0.18);
+  background: rgba(122, 183, 173, 0.2);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
@@ -581,9 +587,9 @@ textarea {
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
-  border-bottom-color: var(--teal);
+  border-bottom-color: var(--accent);
 }
 
 textarea {
@@ -593,7 +599,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba(45, 44, 46, 0.38);
+  color: rgba(45, 44, 46, 0.72);
 }
 
 .text-cta {
@@ -609,8 +615,8 @@ textarea::placeholder {
 
 .text-cta:hover,
 .text-cta:focus-visible {
-  color: var(--teal);
-  border-bottom-color: var(--teal);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 .btn {
@@ -620,7 +626,7 @@ textarea::placeholder {
   margin: 1.4rem auto 0;
   padding: 0.95rem 1.75rem;
   border: 0;
-  background: var(--sage);
+  background: var(--sage-deep);
   color: var(--paper);
   font-family: var(--wide);
   font-size: 0.72rem;
@@ -633,7 +639,7 @@ textarea::placeholder {
 
 .btn:hover,
 .btn:focus-visible {
-  background: #6fa69d;
+  background: var(--sage-hover);
 }
 
 .btn:active {
@@ -685,7 +691,6 @@ textarea::placeholder {
 
 .footer .label {
   color: var(--paper);
-  opacity: 0.85;
   margin-bottom: 0.85rem;
 }
 
@@ -709,7 +714,7 @@ textarea::placeholder {
 }
 
 .footer-bottom p {
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   letter-spacing: 0.1em;
   line-height: 1.35;
   white-space: nowrap;
