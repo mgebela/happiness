@@ -133,7 +133,23 @@ export default function App() {
       )}
 
       <section className="hero">
-        <img src={photo("hero.jpg")} alt="Mladenci u vinogradu u zlatnom svjetlu" />
+        <img
+          className="hero-poster"
+          src={photo("hero-poster.jpg")}
+          alt="Vjenčanje na otvorenom — ceremonija, gosti i proslava"
+        />
+        <video
+          className="hero-media"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster={photo("hero-poster.jpg")}
+          aria-hidden="true"
+        >
+          <source src={photo("hero.mp4")} type="video/mp4" />
+        </video>
         <div className="hero-brand">
           <Logo />
         </div>
