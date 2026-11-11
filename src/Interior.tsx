@@ -144,12 +144,22 @@ export function ServicePage() {
   );
 }
 
+const contactWays = [
+  { id: "email", label: "E-mail", thanks: "Javit ću se osobno na e-mail." },
+  { id: "telefon", label: "Telefon", thanks: "Javit ću se osobno telefonom." },
+  { id: "whatsapp", label: "WhatsApp", thanks: "Javit ću se osobno na WhatsApp." },
+] as const;
+
+type ContactWay = (typeof contactWays)[number]["id"];
+
 export function ContactPage() {
-  const [sent, setSent] = useState(false);
+  const [sent, setSent] = useState<(typeof contactWays)[number] | null>(null);
+  const [way, setWay] = useState<ContactWay>("email");
+  const needsPhone = way !== "email";
 
   function onInquire(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setSent(true);
+    setSent(contactWays.find((item) => item.id === way) ?? contactWays[0]);
   }
 
   return (
@@ -159,20 +169,44 @@ export function ContactPage() {
         Javite se za vjenčanje, ceremoniju, event ili konzultacije. Odgovaram osobno.
       </p>
       {sent ? (
-        <div className="thanks">
+        <div className="thanks" role="status">
           <Mark />
           <h3>Hvala vam.</h3>
-          <p>Poruka je zabilježena. Javit ću se čim povežemo pravi inbox.</p>
+          <p>Upit je zaprimljen. {sent.thanks}</p>
         </div>
       ) : (
-        <form onSubmit={onInquire} noValidate>
+        <form onSubmit={onInquire}>
           <label>
             Ime i prezime
-            <input name="name" required placeholder="Vaše ime" />
+            <input name="name" required placeholder="Vaše ime" autoComplete="name" />
           </label>
           <label>
             E-mail
-            <input name="email" type="email" required placeholder="vas@email.com" />
+            <input name="email" type="email" required placeholder="vas@email.com" autoComplete="email" />
+          </label>
+          <label>
+            Telefon
+            <input
+              name="phone"
+              type="tel"
+              required={needsPhone}
+              placeholder="091 …"
+              autoComplete="tel"
+            />
+          </label>
+          <label>
+            Način kontakta
+            <select
+              name="contact"
+              value={way}
+              onChange={(event) => setWay(event.target.value as ContactWay)}
+            >
+              {contactWays.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
           </label>
           <label>
             Usluga
