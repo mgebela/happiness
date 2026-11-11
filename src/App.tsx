@@ -139,6 +139,9 @@ export default function App() {
         </div>
         <div className="hero-caption">
           <h1>Vjenčanja i događanja koja se pamte</h1>
+          <a className="hero-cta" href="#kontakt">
+            Započnite priču
+          </a>
         </div>
       </section>
 
