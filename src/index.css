@@ -5,7 +5,7 @@
   --teal-4: #ddeeea;
   --ink: #2d2c2e;
   --midnight: #2d2c2e;
-  --paper: #f6f4f0;
+  --paper: #eeedea;
   --white: #ffffff;
   --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -22,19 +22,18 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
-  background: var(--midnight);
+  background: var(--paper);
 }
 
 body {
   margin: 0;
-  color: var(--paper);
-  background: var(--ink);
+  color: var(--ink);
+  background: var(--paper);
   font-family: var(--compact);
   font-weight: 400;
   font-size: 1.05rem;
   line-height: 1.5;
   overflow-x: clip;
-  color-scheme: dark;
 }
 
 a {
@@ -59,11 +58,16 @@ video {
 .site {
   min-height: 100vh;
   max-width: 100%;
+}
+
+#sadrzaj,
+.footer {
+  max-width: 100%;
   overflow-x: clip;
 }
 
 #sadrzaj {
-  background: var(--ink);
+  background: var(--paper);
   min-height: 100vh;
 }
 
@@ -105,8 +109,11 @@ video {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 1.35rem 2.2rem;
-  color: var(--paper);
+  color: var(--ink);
+  background: var(--paper);
+  border-bottom: 1px solid rgba(45, 44, 46, 0.08);
   mix-blend-mode: normal;
+  transition: background 0.35s ease, border-color 0.35s ease, color 0.3s ease;
 }
 
 .nav .logo-link {
@@ -122,11 +129,13 @@ video {
   pointer-events: auto;
 }
 
-.nav.is-light {
+.nav.is-open {
+  background: transparent;
+  border-bottom-color: transparent;
   color: var(--paper);
 }
 
-.nav.is-light .logo {
+.nav.is-open .logo {
   color: var(--paper);
 }
 
@@ -237,8 +246,8 @@ video {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .landing-mark {
@@ -272,7 +281,7 @@ video {
   column-gap: 0.85rem;
   align-items: center;
   text-align: left;
-  color: var(--paper);
+  color: var(--ink);
 }
 
 .logo .mark {
@@ -341,8 +350,8 @@ video {
   gap: 4vw;
   align-items: center;
   padding: 6rem 8vw;
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .overview h1 {
@@ -374,7 +383,7 @@ video {
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
-  background: var(--midnight);
+  background: var(--paper);
 }
 
 .hero-poster,
@@ -406,7 +415,7 @@ video {
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: 0;
-  color: var(--paper);
+  color: var(--ink);
 }
 
 .lede:last-child {
@@ -419,6 +428,10 @@ video {
 
 .enquire-page {
   min-height: 72vh;
+  padding-top: 8.5rem;
+}
+
+.prose-page {
   padding-top: 8.5rem;
 }
 
@@ -519,7 +532,7 @@ label {
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--paper);
+  color: var(--ink);
   font-weight: 400;
 }
 
@@ -528,9 +541,9 @@ select,
 textarea {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgba(246, 244, 240, 0.28);
+  border-bottom: 1px solid rgba(45, 44, 46, 0.28);
   background: transparent;
-  color: var(--paper);
+  color: var(--ink);
   padding: 0.45rem 0;
   text-transform: none;
   letter-spacing: 0;
@@ -552,7 +565,7 @@ textarea {
 
 input::placeholder,
 textarea::placeholder {
-  color: rgba(246, 244, 240, 0.38);
+  color: rgba(45, 44, 46, 0.38);
 }
 
 .text-cta {
@@ -560,7 +573,7 @@ textarea::placeholder {
   padding: 0;
   border: 0;
   background: none;
-  color: var(--paper);
+  color: var(--ink);
   cursor: pointer;
 }
 
@@ -594,8 +607,8 @@ textarea::placeholder {
 }
 
 .footer {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
   padding: 3.2rem 4vw 1.6rem;
 }
 
@@ -629,9 +642,14 @@ textarea::placeholder {
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1.2rem;
-  border-top: 1px solid rgba(246, 244, 240, 0.12);
-  font-size: 0.62rem;
-  letter-spacing: 0.16em;
+  border-top: 1px solid rgba(45, 44, 46, 0.12);
+}
+
+.footer-bottom p {
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+  white-space: nowrap;
 }
 
 .footer-bottom em {
@@ -686,6 +704,11 @@ textarea::placeholder {
   .prose {
     padding-top: 4.5rem;
     padding-bottom: 3.2rem;
+  }
+
+  .enquire-page,
+  .prose-page {
+    padding-top: 7rem;
   }
 
   .lede {

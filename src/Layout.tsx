@@ -16,7 +16,6 @@ export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isHome = location.pathname === "/";
   const [pastLanding, setPastLanding] = useState(!isHome);
-  const [onDark, setOnDark] = useState(true);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -24,12 +23,7 @@ export default function Layout() {
 
   useLayoutEffect(() => {
     const update = () => {
-      const hero = document.querySelector(".hero-page");
       setPastLanding(!isHome || window.scrollY > window.innerHeight * 0.55);
-      const y = window.innerHeight * 0.12;
-      const heroBox = hero?.getBoundingClientRect();
-      const overHero = Boolean(heroBox && heroBox.top < y && heroBox.bottom > y);
-      setOnDark(overHero || menuOpen);
     };
 
     update();
@@ -39,7 +33,7 @@ export default function Layout() {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };
-  }, [menuOpen, location.pathname, isHome]);
+  }, [location.pathname, isHome]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -48,7 +42,6 @@ export default function Layout() {
     };
   }, [menuOpen]);
 
-  const navTone = menuOpen || onDark ? " is-light" : "";
   const showMark = menuOpen || pastLanding;
 
   return (
@@ -57,7 +50,7 @@ export default function Layout() {
         Preskočite na sadržaj
       </a>
 
-      <header className={`nav${menuOpen ? " is-open" : ""}${showMark ? " is-scrolled" : ""}${navTone}`}>
+      <header className={`nav${menuOpen ? " is-open" : ""}${showMark ? " is-scrolled" : ""}`}>
         <button
           className={`menu-toggle${menuOpen ? " is-open" : ""}`}
           aria-expanded={menuOpen}
@@ -68,7 +61,7 @@ export default function Layout() {
           <span />
           <span />
         </button>
-        <Logo compact invert />
+        <Logo compact invert={menuOpen} />
         <Link className="nav-contact" to="/upit">
           Upit
         </Link>
@@ -122,7 +115,7 @@ export default function Layout() {
               </a>
             </p>
           </div>
-          <Logo invert />
+          <Logo />
         </div>
         <div className="footer-bottom">
           <p>

@@ -78,8 +78,7 @@ export function AboutPage() {
   useReveal();
   return (
     <>
-      <Hero src="hero.jpg" alt="Par hoda bos po vinogradu u zalasku sunca" position="center 40%" />
-      <section className="prose reveal">
+      <section className="prose prose-page reveal">
         <p className="label">O meni</p>
         <p className="lede">
           Ja sam Tihana Tomljanović, osnivačica Studija Happiness iz Osijeka. Već više od 15 godina
