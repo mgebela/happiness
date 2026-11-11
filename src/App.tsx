@@ -9,8 +9,8 @@ const chapters = [
     id: "vjencanja",
     kicker: "Organizacija i koordinacija",
     title: "Vjenčanja",
-    image: "service-koordinacija.jpg",
-    alt: "Mladenci uz prozor, u tihom trenutku prije slavlja",
+    image: "vjencanja.jpg",
+    alt: "Mlada se okreće prema kameri, mladoženja stoji u parku",
     paragraphs: [
       "Ako želite potpuno bezbrižan proces, tu smo od prve ideje. Pomažem u odabiru lokacije, izvođača i svih važnih detalja, izrađujemo koncept i plan vjenčanja te koordiniram sve uključene. Vi donosite odluke, a ja brinem da se sve realizira bez stresa.",
       "Za parove koji su već organizirali većinu dana, tu sam u završnoj fazi i na sam dan. Zajedno prolazimo detalje, izrađujemo jasan protokol i raspored, a na dan vjenčanja koordiniram uzvanike i izvođače. Vaše je samo da uživate.",
@@ -22,7 +22,7 @@ const chapters = [
     kicker: "Simbolični matičar",
     title: "Ceremonije",
     image: "service-maticar.jpg",
-    alt: "Simbolična ceremonija pod cvjetnim lukom",
+    alt: "Ceremonija uz jezero, mladenka i mladoženja pod bijelim suncobranima",
     paragraphs: [
       "Simbolična ceremonija daje vam slobodu da vjenčanje oblikujete onako kako želite — u prirodi, vinogradu, parku ili mjestu koje za vas ima značenje.",
       "Uz osobne zavjete, glazbu i pažljivo osmišljen govor, često postaje najemotivniji trenutak dana. Ceremoniju vodim i na engleskom jeziku.",
@@ -32,8 +32,8 @@ const chapters = [
     id: "dogadanja",
     kicker: "Eventi i moderacija",
     title: "Događanja",
-    image: "closing.jpg",
-    alt: "Pogled iz zraka na ceremoniju u vrtu",
+    image: "dogadanja.jpg",
+    alt: "Lounge kutak na otvorenom, drvene klupe i bijeli jastuci",
     paragraphs: [
       "Osim vjenčanja, Studio Happiness organizira privatna i poslovna događanja — od ideje i koncepta do realizacije. Cilj je događaj s jasnom pričom, dobrom atmosferom i profesionalnom organizacijom.",
       "Zahvaljujući godinama rada na radiju, moderacija mi je prirodan dio posla. Vodim programe, predstavljam sudionike i brinem da događaj ima dobar ritam i ugodnu atmosferu.",
@@ -42,10 +42,12 @@ const chapters = [
 ];
 
 const moments = [
-  { src: "gallery-01.jpg", alt: "" },
-  { src: "gallery-03.jpg", alt: "" },
-  { src: "hero.jpg", alt: "" },
-  { src: "gallery-08.jpg", alt: "" },
+  { src: "gallery-01.jpg", alt: "Ples na proslavi, narančasta satenska haljina", position: "center 32%" },
+  { src: "gallery-02.jpg", alt: "Poljubac pod vatrometom", position: "center 78%" },
+  { src: "gallery-03.jpg", alt: "Par uz kabriolet u vinogradu", position: "center 55%" },
+  { src: "gallery-04.jpg", alt: "Cvjetni detalj", position: "center 40%" },
+  { src: "gallery-05.jpg", alt: "Mlada i djeveruše nazdravljaju", position: "center 40%" },
+  { src: "gallery-06.jpg", alt: "Par tijekom ceremonije, jesenski buket", position: "center 38%" },
 ];
 
 export default function App() {
@@ -109,7 +111,7 @@ export default function App() {
       )}
 
       <section className="hero">
-        <img src={photo("hero.jpg")} alt="Mlada i djeveruše nazdravljaju na otvorenom" />
+        <img src={photo("hero.jpg")} alt="Mladenci u vinogradu u zlatnom svjetlu" />
         <div className="hero-caption">
           <p className="eyebrow">All about events</p>
           <h1>Vjenčanja i događanja koja se pamte</h1>
@@ -135,7 +137,7 @@ export default function App() {
           <p>Najljepši dio mog posla su ljudi i njihove priče.</p>
         </div>
         <figure className="feature-photo">
-          <img src={photo("tihana.jpg")} alt="Tihana Tomljanović uz cvjetni aranžman" />
+          <img src={photo("tihana.jpg")} alt="Tihana Tomljanović vodi simboličnu ceremoniju pod cvjetnim lukom" />
         </figure>
       </section>
 
@@ -173,7 +175,7 @@ export default function App() {
         <div className="moment-grid">
           {moments.map((item) => (
             <figure key={item.src} className="feature-photo">
-              <img src={photo(item.src)} alt={item.alt} />
+              <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
             </figure>
           ))}
         </div>

@@ -324,9 +324,13 @@ h2 {
   object-fit: cover;
 }
 
+.manifesto .feature-photo {
+  max-width: 640px;
+}
+
 .manifesto .feature-photo img {
-  aspect-ratio: 3 / 2;
-  object-position: center 18%;
+  aspect-ratio: 4 / 5;
+  object-position: center 28%;
 }
 
 .chapter {
@@ -334,7 +338,15 @@ h2 {
 }
 
 .chapter .feature-photo img {
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 3 / 2;
+}
+
+.chapter#vjencanja .feature-photo img {
+  object-position: center 48%;
+}
+
+.chapter#dogadanja .feature-photo img {
+  object-position: center 58%;
 }
 
 .chapter-copy {
@@ -556,7 +568,6 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .manifesto .feature-photo img,
   .chapter .feature-photo img {
     aspect-ratio: 4 / 3;
   }
