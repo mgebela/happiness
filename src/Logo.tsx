@@ -14,6 +14,14 @@ export function Mark({ className = "" }: { className?: string }) {
   );
 }
 
+export function Wordmark({ href = "#pocetak" }: { href?: string }) {
+  return (
+    <a className="wordmark" href={href}>
+      happiness
+    </a>
+  );
+}
+
 export function Logo({ inverted = false, compact = false }: LogoProps) {
   return (
     <a className={`logo${inverted ? " invert" : ""}${compact ? " compact" : ""}`} href="#pocetak">
