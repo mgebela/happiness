@@ -49,6 +49,17 @@ function EnquireCta() {
   );
 }
 
+function BackLink() {
+  return (
+    <Link className="back-link" to="/#pregled">
+      <svg className="back-link-icon" viewBox="0 0 28 12" aria-hidden="true">
+        <path d="M6 1 L1 6 L6 11 M1 6 H27" fill="none" stroke="currentColor" strokeWidth="1" />
+      </svg>
+      Natrag
+    </Link>
+  );
+}
+
 export function AboutPage() {
   return (
     <>
@@ -123,8 +134,11 @@ export function ServicePage() {
         ))}
       </section>
       <Strip items={service.extras} />
-      <section className="prose reveal">
-        <EnquireCta />
+      <section className="prose service-end reveal">
+        <Link className="btn" to="/upit">
+          Pošaljite upit
+        </Link>
+        <BackLink />
       </section>
     </>
   );

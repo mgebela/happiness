@@ -4,10 +4,23 @@ import { Logo } from "./Logo";
 import { useReveal } from "./useReveal";
 
 export function ScrollTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const go = () => {
+      if (hash) {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView();
+          return;
+        }
+      }
+      window.scrollTo(0, 0);
+    };
+
+    go();
+    const frame = requestAnimationFrame(go);
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, hash]);
   return null;
 }
 
