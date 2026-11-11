@@ -151,12 +151,12 @@ video {
 
 .landing-mark .logo-happiness,
 .landing-mark .logo-by {
-  font-size: clamp(2rem, 5.4vw, 3.8rem);
+  font-size: clamp(2.6rem, 7vw, 4.94rem);
 }
 
 .landing-mark .logo-tag {
-  font-size: clamp(0.58rem, 1.1vw, 0.78rem);
-  margin-top: 0.55rem;
+  font-size: clamp(0.75rem, 1.43vw, 1.01rem);
+  margin-top: 0.72rem;
 }
 
 .logo,
@@ -728,7 +728,7 @@ textarea::placeholder {
 
   .landing-mark .logo-happiness,
   .landing-mark .logo-by {
-    font-size: 1.7rem;
+    font-size: 2.21rem;
   }
 
   .footer {
