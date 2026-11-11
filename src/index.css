@@ -20,6 +20,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -30,6 +31,7 @@ body {
   font-weight: 400;
   font-size: 1.05rem;
   line-height: 1.7;
+  overflow-x: clip;
 }
 
 a {
@@ -48,8 +50,11 @@ img {
   display: block;
 }
 
-#root {
+#root,
+.site {
   min-height: 100vh;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .nav {
@@ -289,7 +294,7 @@ img {
   bottom: 0;
   z-index: 1;
   text-align: center;
-  padding: 0 8vw 4.5rem;
+  padding: 0 max(8vw, 10.5rem) 4.5rem;
 }
 
 .eyebrow {
@@ -312,6 +317,9 @@ h3 {
   font-weight: 400;
   letter-spacing: 0.01em;
   line-height: 1.08;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 h1 {
@@ -369,6 +377,7 @@ h2 {
 .feature-photo {
   margin: 0 auto;
   max-width: 1120px;
+  min-width: 0;
 }
 
 .feature-photo img {
@@ -410,8 +419,10 @@ h2 {
 
 .chapter-copy .eyebrow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.8rem;
+  max-width: 100%;
   color: var(--muted);
 }
 
@@ -460,12 +471,15 @@ h2 {
   flex-direction: column;
   gap: 2.5rem;
   margin-top: 3.2rem;
+  min-width: 0;
 }
 
 .moment-card {
   position: sticky;
   top: 5.4rem;
   margin: 0;
+  width: 100%;
+  min-width: 0;
   height: calc(100vh - 6.6rem);
   overflow: hidden;
   border-radius: 22px;
@@ -660,50 +674,241 @@ textarea {
   font-size: 0.9rem;
 }
 
+.contact-cloud {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.6rem;
+  z-index: 30;
+  width: 118px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: var(--ink);
+  animation: cloud-float 5s ease-in-out infinite;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.contact-cloud.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  transform: translateY(10px);
+}
+
+.contact-cloud-shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--white);
+  filter: drop-shadow(0 12px 22px rgba(45, 44, 46, 0.16));
+  transition: filter 0.3s ease;
+}
+
+.contact-cloud span {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.45rem;
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.contact-cloud:hover {
+  animation-play-state: paused;
+  transform: translateY(-4px);
+}
+
+.contact-cloud:hover .contact-cloud-shape {
+  fill: var(--teal-4);
+  filter: drop-shadow(0 16px 26px rgba(45, 44, 46, 0.2));
+}
+
+@keyframes cloud-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-cloud {
+    animation: none;
+  }
+}
+
 @media (max-width: 800px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .nav {
+    padding: 0.95rem max(1rem, env(safe-area-inset-right)) 0.95rem max(1rem, env(safe-area-inset-left));
+  }
+
+  .hero {
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .hero img {
+    height: 100dvh;
+    object-position: 58% 38%;
+  }
+
   .hero-brand {
     left: 50%;
-    top: 12%;
+    top: 8%;
     transform: translateX(-50%);
+    width: calc(100% - 2.4rem);
+    max-width: 22rem;
+  }
+
+  .hero-brand .logo {
+    justify-content: center;
+    gap: 0.55rem;
   }
 
   .hero-brand .mark {
-    width: 47px;
-    height: 62px;
+    width: 34px;
+    height: 46px;
+  }
+
+  .hero-brand .logo-happiness {
+    font-size: 2.45rem;
+  }
+
+  .hero-brand .logo-by {
+    margin-top: 0.12rem;
+    font-size: 0.98rem;
+  }
+
+  .hero-brand .logo-tag {
+    margin-top: 0.38rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
   }
 
   .hero-caption {
-    padding-bottom: 3rem;
+    padding: 0 1.25rem calc(6.4rem + env(safe-area-inset-bottom));
+  }
+
+  h1 {
+    font-size: 1.85rem;
+    line-height: 1.16;
+  }
+
+  h2 {
+    font-size: 2.05rem;
+  }
+
+  .manifesto h2 {
+    font-size: 1.48rem;
+    letter-spacing: 0.045em;
+    line-height: 1.22;
+  }
+
+  .eyebrow {
+    font-size: 0.64rem;
+    letter-spacing: 0.2em;
   }
 
   .manifesto,
   .enquire,
   .chapter {
-    padding-left: 7vw;
-    padding-right: 7vw;
+    padding: 3.8rem max(1.25rem, env(safe-area-inset-right)) 3.4rem max(1.25rem, env(safe-area-inset-left));
   }
 
   .moments {
-    padding-left: 0.9rem;
-    padding-right: 0.9rem;
+    padding: 3.8rem 0.7rem 3.2rem;
+  }
+
+  .moments h2 {
+    font-size: 1.7rem;
+    padding-inline: 0.4rem;
   }
 
   .moment-card {
-    top: 4.6rem;
-    height: calc(100dvh - 5.6rem);
-    border-radius: 16px;
+    top: 4.2rem;
+    height: calc(100dvh - 5rem);
+    border-radius: 14px;
   }
 
   .moment-card figcaption {
-    padding-top: 8vh;
+    padding: 5.5vh 1.1rem 0;
+  }
+
+  .moment-card h3 {
+    font-size: 1.55rem;
+    max-width: 14ch;
+  }
+
+  .chapter-copy {
+    margin-top: 1.5rem;
+  }
+
+  .chapter-copy h2 {
+    font-size: 2.35rem;
   }
 
   .enquire-grid,
   form {
     grid-template-columns: 1fr;
+    gap: 1.4rem;
   }
 
   .chapter .feature-photo img {
     aspect-ratio: 4 / 3;
+  }
+
+  .contact-cloud {
+    right: max(0.5rem, env(safe-area-inset-right));
+    bottom: max(0.7rem, env(safe-area-inset-bottom));
+    width: 76px;
+    height: 50px;
+  }
+
+  .contact-cloud span {
+    font-size: 0.52rem;
+    letter-spacing: 0.16em;
+    margin-top: 0.2rem;
+  }
+
+  .menu-overlay a {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .footer {
+    padding: 2rem 1.2rem calc(2.2rem + env(safe-area-inset-bottom));
+  }
+
+  .footer nav {
+    gap: 0.85rem 1.1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero-brand .logo-happiness {
+    font-size: 2.15rem;
+  }
+
+  .hero-brand .mark {
+    width: 30px;
+    height: 40px;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+  }
+
+  .manifesto h2,
+  .moments h2 {
+    font-size: 1.4rem;
   }
 }
