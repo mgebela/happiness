@@ -1,30 +1,27 @@
-type LogoProps = {
-  inverted?: boolean;
+import { Link } from "react-router-dom";
+
+type LockupProps = {
   compact?: boolean;
+  invert?: boolean;
+  className?: string;
 };
+
+const TEAL = ["#7AB7AC", "#9CCBC3", "#BDDDD6", "#DDEEEA"];
 
 export function Mark({ className = "" }: { className?: string }) {
   return (
     <svg className={`mark ${className}`} viewBox="0 0 48 64" aria-hidden="true">
-      <rect width="48" height="16" fill="currentColor" className="t1" />
-      <rect x="16" y="16" width="16" height="16" fill="currentColor" className="t2" />
-      <rect x="16" y="32" width="16" height="16" fill="currentColor" className="t3" />
-      <rect x="16" y="48" width="16" height="16" fill="currentColor" className="t4" />
+      <rect width="48" height="16" fill={TEAL[0]} />
+      <rect x="16" y="16" width="16" height="16" fill={TEAL[1]} />
+      <rect x="16" y="32" width="16" height="16" fill={TEAL[2]} />
+      <rect x="16" y="48" width="16" height="16" fill={TEAL[3]} />
     </svg>
   );
 }
 
-export function Wordmark({ href = "#pocetak" }: { href?: string }) {
+export function Lockup({ compact = false, invert = false, className = "" }: LockupProps) {
   return (
-    <a className="wordmark" href={href}>
-      happiness
-    </a>
-  );
-}
-
-export function Logo({ inverted = false, compact = false }: LogoProps) {
-  return (
-    <a className={`logo${inverted ? " invert" : ""}${compact ? " compact" : ""}`} href="#pocetak">
+    <span className={`logo${compact ? " compact" : ""}${invert ? " invert" : ""}${className ? ` ${className}` : ""}`}>
       <Mark />
       <span className="logo-type">
         <span className="logo-happiness">happiness</span>
@@ -37,6 +34,20 @@ export function Logo({ inverted = false, compact = false }: LogoProps) {
           </span>
         )}
       </span>
-    </a>
+    </span>
   );
 }
+
+export function Logo({
+  to = "/",
+  compact = false,
+  invert = false,
+  className = "",
+}: LockupProps & { to?: string }) {
+  return (
+    <Link className="logo-link" to={to} onClick={() => window.scrollTo(0, 0)}>
+      <Lockup compact={compact} invert={invert} className={className} />
+    </Link>
+  );
+}
+

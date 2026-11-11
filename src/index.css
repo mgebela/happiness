@@ -1,10 +1,16 @@
 :root {
-  --midnight: #272e42;
-  --ink: #3b435c;
-  --paper: #eeeee9;
-  --white: #f7f6f2;
+  --teal: #7ab7ac;
+  --teal-2: #9ccbc3;
+  --teal-3: #bdddd6;
+  --teal-4: #ddeeea;
+  --ink: #2d2c2e;
+  --midnight: #2d2c2e;
+  --paper: #f6f4f0;
+  --white: #ffffff;
   --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --compact: var(--display);
+  --wide: var(--sans);
 }
 
 *,
@@ -21,13 +27,14 @@ html {
 
 body {
   margin: 0;
-  color: var(--ink);
-  background: var(--paper);
-  font-family: var(--display);
+  color: var(--paper);
+  background: var(--ink);
+  font-family: var(--compact);
   font-weight: 400;
   font-size: 1.05rem;
   line-height: 1.5;
   overflow-x: clip;
+  color-scheme: dark;
 }
 
 a {
@@ -53,6 +60,11 @@ video {
   min-height: 100vh;
   max-width: 100%;
   overflow-x: clip;
+}
+
+#sadrzaj {
+  background: var(--ink);
+  min-height: 100vh;
 }
 
 .skip-link {
@@ -93,19 +105,19 @@ video {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 1.35rem 2.2rem;
-  color: var(--ink);
+  color: var(--paper);
   mix-blend-mode: normal;
 }
 
-.nav .wordmark {
+.nav .logo-link {
   justify-self: center;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease, color 0.3s ease;
 }
 
-.nav.is-scrolled .wordmark,
-.nav.is-open .wordmark {
+.nav.is-scrolled .logo-link,
+.nav.is-open .logo-link {
   opacity: 1;
   pointer-events: auto;
 }
@@ -114,20 +126,18 @@ video {
   color: var(--paper);
 }
 
-.wordmark {
-  font-family: var(--display);
-  font-size: 1.05rem;
-  font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: lowercase;
+.nav.is-light .logo {
+  color: var(--paper);
 }
 
 .nav-contact,
 .label,
 .overview-nav a,
 .menu-toggle,
-.text-cta {
-  font-family: var(--sans);
+.text-cta,
+.logo-tag,
+.footer-bottom {
+  font-family: var(--wide);
   font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.2em;
@@ -189,7 +199,7 @@ video {
   position: fixed;
   inset: 0;
   z-index: 35;
-  background: var(--midnight);
+  background: var(--ink);
   color: var(--paper);
   display: grid;
   align-content: center;
@@ -202,13 +212,13 @@ video {
 }
 
 .menu-overlay a {
-  font-family: var(--display);
+  font-family: var(--compact);
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 400;
 }
 
 .menu-overlay nav a:hover {
-  opacity: 0.55;
+  color: var(--teal);
 }
 
 .menu-meta {
@@ -221,35 +231,99 @@ video {
 }
 
 .landing {
+  position: relative;
   min-height: 100vh;
   min-height: 100dvh;
   display: grid;
   place-items: center;
-  background: var(--midnight);
+  overflow: hidden;
+  background: var(--ink);
   color: var(--paper);
 }
 
 .landing-mark {
+  position: relative;
+  z-index: 1;
+}
+
+.landing-mark .logo .mark {
+  width: clamp(3.4rem, 8vw, 5.6rem);
+  height: auto;
+}
+
+.landing-mark .logo-happiness,
+.landing-mark .logo-by {
+  font-size: clamp(2rem, 5.4vw, 3.8rem);
+}
+
+.landing-mark .logo-tag {
+  font-size: clamp(0.58rem, 1.1vw, 0.78rem);
+  margin-top: 0.55rem;
+}
+
+.logo,
+.logo-link {
+  color: inherit;
+}
+
+.logo {
   display: grid;
-  justify-items: center;
-  gap: 1.1rem;
-  text-align: center;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.85rem;
+  align-items: center;
+  text-align: left;
+  color: var(--paper);
 }
 
-.landing-mark span {
-  font-size: clamp(2.2rem, 6vw, 4.4rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  line-height: 1;
+.logo .mark {
+  grid-row: 1 / span 3;
+  width: 2.15rem;
+  height: auto;
 }
 
-.landing-mark em {
-  font-family: var(--sans);
+.logo-type {
+  display: grid;
+  align-content: center;
+  gap: 0.08rem;
+}
+
+.logo-happiness,
+.logo-by {
+  font-family: var(--compact);
+  font-weight: 400;
+  font-size: 1.28rem;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: lowercase;
+}
+
+.logo-by em,
+.logo-tag em {
   font-style: normal;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  opacity: 0.72;
+  color: var(--teal);
+}
+
+.logo-tag {
+  margin-top: 0.28rem;
+  font-size: 0.52rem;
+  letter-spacing: 0.22em;
+}
+
+.logo.compact {
+  column-gap: 0.55rem;
+}
+
+.logo.compact .mark {
+  width: 1.05rem;
+}
+
+.logo.compact .logo-happiness,
+.logo.compact .logo-by {
+  font-size: 0.86rem;
+}
+
+.logo.invert {
+  color: var(--paper);
 }
 
 .prose,
@@ -267,11 +341,13 @@ video {
   gap: 4vw;
   align-items: center;
   padding: 6rem 8vw;
-  background: var(--paper);
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .overview h1 {
   margin: 0;
+  font-family: var(--compact);
   font-size: clamp(3.4rem, 9vw, 8.2rem);
   font-weight: 400;
   line-height: 0.95;
@@ -287,8 +363,10 @@ video {
 .overview-nav a:hover,
 .nav-contact:hover,
 .footer a:hover,
-.text-cta:hover {
-  opacity: 0.55;
+.text-cta:hover,
+.landing-mark:hover .logo-by em,
+.landing-mark:hover .logo-tag em {
+  color: var(--teal);
 }
 
 .film {
@@ -318,19 +396,30 @@ video {
 
 .label {
   margin: 0 0 1.6rem;
-  color: var(--ink);
+  color: var(--teal);
 }
 
 .lede {
   margin: 0 0 1.5rem;
+  font-family: var(--compact);
   font-size: clamp(1.35rem, 2.4vw, 2.15rem);
   font-weight: 400;
   line-height: 1.45;
-  color: var(--ink);
+  letter-spacing: 0;
+  color: var(--paper);
 }
 
 .lede:last-child {
   margin-bottom: 0;
+}
+
+.cta-wrap {
+  margin: 2.6rem 0 0;
+}
+
+.enquire-page {
+  min-height: 72vh;
+  padding-top: 8.5rem;
 }
 
 .portrait {
@@ -426,11 +515,12 @@ form .text-cta {
 label {
   display: grid;
   gap: 0.4rem;
-  font-family: var(--sans);
+  font-family: var(--wide);
   font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: var(--paper);
+  font-weight: 400;
 }
 
 input,
@@ -438,13 +528,13 @@ select,
 textarea {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgba(59, 67, 92, 0.28);
+  border-bottom: 1px solid rgba(246, 244, 240, 0.28);
   background: transparent;
-  color: var(--ink);
+  color: var(--paper);
   padding: 0.45rem 0;
   text-transform: none;
   letter-spacing: 0;
-  font-family: var(--display);
+  font-family: var(--compact);
   font-size: 1.15rem;
 }
 
@@ -452,7 +542,7 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
   outline: none;
-  border-bottom-color: var(--ink);
+  border-bottom-color: var(--teal);
 }
 
 textarea {
@@ -460,12 +550,17 @@ textarea {
   resize: vertical;
 }
 
+input::placeholder,
+textarea::placeholder {
+  color: rgba(246, 244, 240, 0.38);
+}
+
 .text-cta {
   margin: 1.4rem auto 0;
   padding: 0;
   border: 0;
   background: none;
-  color: var(--ink);
+  color: var(--paper);
   cursor: pointer;
 }
 
@@ -477,6 +572,7 @@ textarea {
 
 .thanks h3 {
   margin: 0;
+  font-family: var(--compact);
   font-size: 2.4rem;
   font-weight: 400;
 }
@@ -486,14 +582,19 @@ textarea {
   font-size: 1.25rem;
 }
 
+.thanks .mark {
+  width: 28px;
+  height: auto;
+}
+
 .mark {
   width: 22px;
   height: 30px;
-  color: var(--ink);
+  display: block;
 }
 
 .footer {
-  background: var(--midnight);
+  background: var(--ink);
   color: var(--paper);
   padding: 3.2rem 4vw 1.6rem;
 }
@@ -507,8 +608,8 @@ textarea {
 }
 
 .footer .label {
-  color: var(--paper);
-  opacity: 0.55;
+  color: var(--teal);
+  opacity: 1;
   margin-bottom: 0.85rem;
 }
 
@@ -518,9 +619,7 @@ textarea {
   line-height: 1.55;
 }
 
-.footer .wordmark {
-  font-size: 1.15rem;
-  letter-spacing: 0.18em;
+.footer .logo-link {
   align-self: start;
   justify-self: end;
 }
@@ -530,12 +629,14 @@ textarea {
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1.2rem;
-  border-top: 1px solid rgba(238, 238, 233, 0.12);
-  font-family: var(--sans);
+  border-top: 1px solid rgba(246, 244, 240, 0.12);
   font-size: 0.62rem;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
-  opacity: 0.55;
+}
+
+.footer-bottom em {
+  font-style: normal;
+  color: var(--teal);
 }
 
 .has-reveal .reveal {
@@ -565,7 +666,7 @@ textarea {
     grid-template-columns: 1fr 1fr;
   }
 
-  .footer .wordmark {
+  .footer .logo-link {
     justify-self: start;
     grid-column: 1 / -1;
   }
@@ -607,9 +708,9 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .landing-mark span {
-    font-size: 1.85rem;
-    letter-spacing: 0.16em;
+  .landing-mark .logo-happiness,
+  .landing-mark .logo-by {
+    font-size: 1.7rem;
   }
 
   .menu-overlay a {
