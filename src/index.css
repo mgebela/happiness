@@ -6,6 +6,7 @@
   --ink: #2d2c2e;
   --midnight: #2d2c2e;
   --paper: #eeedea;
+  --sage: #86b4ab;
   --white: #ffffff;
   --display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -129,13 +130,15 @@ video {
   pointer-events: auto;
 }
 
-.nav.is-open {
+.nav.is-open,
+.nav.is-hero {
   background: transparent;
   border-bottom-color: transparent;
   color: var(--paper);
 }
 
-.nav.is-open .logo {
+.nav.is-open .logo,
+.nav.is-hero .logo {
   color: var(--paper);
 }
 
@@ -246,8 +249,8 @@ video {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--sage);
+  color: var(--paper);
 }
 
 .landing-mark {
@@ -255,9 +258,9 @@ video {
   z-index: 1;
 }
 
-.landing-mark .logo .mark {
-  width: clamp(3.4rem, 8vw, 5.6rem);
-  height: auto;
+.landing-mark .logo.wordmark {
+  grid-template-columns: 1fr;
+  column-gap: 0;
 }
 
 .landing-mark .logo-happiness,
@@ -331,7 +334,17 @@ video {
   font-size: 0.86rem;
 }
 
+.logo.wordmark {
+  grid-template-columns: 1fr;
+  column-gap: 0;
+}
+
 .logo.invert {
+  color: var(--paper);
+}
+
+.logo.invert .logo-by em,
+.logo.invert .logo-tag em {
   color: var(--paper);
 }
 
@@ -371,11 +384,12 @@ video {
 
 .overview-nav a:hover,
 .nav-contact:hover,
-.footer a:hover,
-.text-cta:hover,
-.landing-mark:hover .logo-by em,
-.landing-mark:hover .logo-tag em {
+.text-cta:hover {
   color: var(--teal);
+}
+
+.footer a:hover {
+  opacity: 0.75;
 }
 
 .film {
@@ -607,8 +621,8 @@ textarea::placeholder {
 }
 
 .footer {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--sage);
+  color: var(--paper);
   padding: 3.2rem 4vw 1.6rem;
 }
 
@@ -621,8 +635,8 @@ textarea::placeholder {
 }
 
 .footer .label {
-  color: var(--teal);
-  opacity: 1;
+  color: var(--paper);
+  opacity: 0.85;
   margin-bottom: 0.85rem;
 }
 
@@ -642,7 +656,7 @@ textarea::placeholder {
   justify-content: space-between;
   gap: 1rem;
   padding-top: 1.2rem;
-  border-top: 1px solid rgba(45, 44, 46, 0.12);
+  border-top: 1px solid rgba(246, 244, 240, 0.28);
 }
 
 .footer-bottom p {
@@ -654,7 +668,7 @@ textarea::placeholder {
 
 .footer-bottom em {
   font-style: normal;
-  color: var(--teal);
+  color: var(--paper);
 }
 
 .has-reveal .reveal {

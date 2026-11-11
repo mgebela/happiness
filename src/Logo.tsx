@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 type LockupProps = {
   compact?: boolean;
   invert?: boolean;
+  mark?: boolean;
   className?: string;
 };
 
@@ -19,10 +20,12 @@ export function Mark({ className = "" }: { className?: string }) {
   );
 }
 
-export function Lockup({ compact = false, invert = false, className = "" }: LockupProps) {
+export function Lockup({ compact = false, invert = false, mark = true, className = "" }: LockupProps) {
   return (
-    <span className={`logo${compact ? " compact" : ""}${invert ? " invert" : ""}${className ? ` ${className}` : ""}`}>
-      <Mark />
+    <span
+      className={`logo${compact ? " compact" : ""}${invert ? " invert" : ""}${mark ? "" : " wordmark"}${className ? ` ${className}` : ""}`}
+    >
+      {mark && <Mark />}
       <span className="logo-type">
         <span className="logo-happiness">happiness</span>
         <span className="logo-by">
@@ -42,11 +45,12 @@ export function Logo({
   to = "/",
   compact = false,
   invert = false,
+  mark = true,
   className = "",
 }: LockupProps & { to?: string }) {
   return (
     <Link className="logo-link" to={to} onClick={() => window.scrollTo(0, 0)}>
-      <Lockup compact={compact} invert={invert} className={className} />
+      <Lockup compact={compact} invert={invert} mark={mark} className={className} />
     </Link>
   );
 }

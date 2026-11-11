@@ -43,6 +43,7 @@ export default function Layout() {
   }, [menuOpen]);
 
   const showMark = menuOpen || pastLanding;
+  const onSageHero = isHome && !pastLanding && !menuOpen;
 
   return (
     <div className="site">
@@ -50,7 +51,9 @@ export default function Layout() {
         Preskočite na sadržaj
       </a>
 
-      <header className={`nav${menuOpen ? " is-open" : ""}${showMark ? " is-scrolled" : ""}`}>
+      <header
+        className={`nav${menuOpen ? " is-open" : ""}${showMark ? " is-scrolled" : ""}${onSageHero ? " is-hero" : ""}`}
+      >
         <button
           className={`menu-toggle${menuOpen ? " is-open" : ""}`}
           aria-expanded={menuOpen}
@@ -61,7 +64,7 @@ export default function Layout() {
           <span />
           <span />
         </button>
-        <Logo compact invert={menuOpen} />
+        <Logo compact invert={menuOpen || onSageHero} />
         <Link className="nav-contact" to="/upit">
           Upit
         </Link>
@@ -115,7 +118,7 @@ export default function Layout() {
               </a>
             </p>
           </div>
-          <Logo />
+          <Logo invert mark={false} />
         </div>
         <div className="footer-bottom">
           <p>
