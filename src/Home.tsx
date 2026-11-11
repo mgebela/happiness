@@ -12,11 +12,7 @@ export default function Home() {
       </section>
 
       <section className="overview" id="pregled">
-        <h1 className="reveal">
-          Vjenčanja i
-          <br />
-          događanja
-        </h1>
+        <h1 className="reveal">Svaki događaj za mene je nova&nbsp;priča</h1>
         <nav className="overview-nav">
           {menuLinks.map((link, index) => (
             <Link key={link.to} to={link.to} className="reveal" style={{ ["--delay" as string]: `${index * 55}ms` }}>
