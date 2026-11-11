@@ -42,12 +42,34 @@ const chapters = [
 ];
 
 const moments = [
-  { src: "gallery-01.jpg", alt: "Ples na proslavi, narančasta satenska haljina", position: "center 32%" },
-  { src: "gallery-02.jpg", alt: "Poljubac pod vatrometom", position: "center 78%" },
-  { src: "gallery-03.jpg", alt: "Par uz kabriolet u vinogradu", position: "center 55%" },
-  { src: "gallery-04.jpg", alt: "Cvjetni detalj", position: "center 40%" },
-  { src: "gallery-05.jpg", alt: "Mlada i djeveruše nazdravljaju", position: "center 40%" },
-  { src: "gallery-06.jpg", alt: "Par tijekom ceremonije, jesenski buket", position: "center 38%" },
+  {
+    src: "gallery-02.jpg",
+    alt: "Poljubac pod vatrometom",
+    position: "center 78%",
+    quote: "Trenuci koji se pamte cijeli život",
+    kicker: "Vatromet",
+  },
+  {
+    src: "gallery-03.jpg",
+    alt: "Par uz kabriolet u vinogradu",
+    position: "center 55%",
+    quote: "Svaka priča zaslužuje pažnju",
+    kicker: "Vjenčanja",
+  },
+  {
+    src: "gallery-01.jpg",
+    alt: "Ples na proslavi, narančasta satenska haljina",
+    position: "center 32%",
+    quote: "Atmosfera, ritam i radost",
+    kicker: "Proslava",
+  },
+  {
+    src: "gallery-05.jpg",
+    alt: "Mlada i djeveruše nazdravljaju",
+    position: "center 40%",
+    quote: "Najljepši dio su ljudi i njihove priče",
+    kicker: "Druženje",
+  },
 ];
 
 export default function App() {
@@ -112,8 +134,10 @@ export default function App() {
 
       <section className="hero">
         <img src={photo("hero.jpg")} alt="Mladenci u vinogradu u zlatnom svjetlu" />
+        <div className="hero-brand">
+          <Logo />
+        </div>
         <div className="hero-caption">
-          <p className="eyebrow">All about events</p>
           <h1>Vjenčanja i događanja koja se pamte</h1>
         </div>
       </section>
@@ -172,10 +196,14 @@ export default function App() {
       <section className="moments" id="trenuci">
         <p className="eyebrow">Trenuci</p>
         <h2>Priče koje smo već ispričali</h2>
-        <div className="moment-grid">
+        <div className="moment-stack">
           {moments.map((item) => (
-            <figure key={item.src} className="feature-photo">
+            <figure key={item.src} className="moment-card">
               <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
+              <figcaption>
+                <h3>{item.quote}</h3>
+                <p>{item.kicker}</p>
+              </figcaption>
             </figure>
           ))}
         </div>
