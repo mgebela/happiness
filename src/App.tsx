@@ -198,15 +198,13 @@ export default function App() {
         <h2>Priče koje smo već ispričali</h2>
         <div className="moment-stack">
           {moments.map((item) => (
-            <article className="moment-pin" key={item.src}>
-              <figure className="moment-card">
-                <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
-                <figcaption>
-                  <h3>{item.quote}</h3>
-                  <p>{item.kicker}</p>
-                </figcaption>
-              </figure>
-            </article>
+            <figure key={item.src} className="moment-card">
+              <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
+              <figcaption>
+                <h3>{item.quote}</h3>
+                <p>{item.kicker}</p>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>

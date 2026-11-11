@@ -467,17 +467,11 @@ h2 {
 }
 
 .moment-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
   margin-top: 3.2rem;
   min-width: 0;
-}
-
-.moment-pin {
-  position: relative;
-  height: 185vh;
-}
-
-.moment-pin:last-child {
-  height: 125vh;
 }
 
 .moment-card {
@@ -496,32 +490,6 @@ h2 {
   height: 100%;
   object-fit: cover;
   border-radius: 0;
-  transform: scale(1.04);
-  will-change: transform;
-}
-
-@supports (animation-timeline: view()) {
-  .moment-pin img {
-    animation: moment-drift linear both;
-    animation-timeline: view();
-    animation-range: cover 0% cover 100%;
-  }
-
-  @keyframes moment-drift {
-    from {
-      transform: scale(1.03);
-    }
-    to {
-      transform: scale(1.1);
-    }
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .moment-card img {
-    transform: none;
-    animation: none;
-  }
 }
 
 .moment-card::after {
@@ -795,14 +763,6 @@ textarea {
   .moments h2 {
     font-size: 1.7rem;
     padding-inline: 0.4rem;
-  }
-
-  .moment-pin {
-    height: 170dvh;
-  }
-
-  .moment-pin:last-child {
-    height: 118dvh;
   }
 
   .moment-card {
