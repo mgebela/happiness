@@ -294,7 +294,7 @@ img {
   bottom: 0;
   z-index: 1;
   text-align: center;
-  padding: 0 max(8vw, 10.5rem) 4.5rem;
+  padding: 0 8vw 4.5rem;
 }
 
 .eyebrow {
@@ -467,11 +467,17 @@ h2 {
 }
 
 .moment-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
   margin-top: 3.2rem;
   min-width: 0;
+}
+
+.moment-pin {
+  position: relative;
+  height: 185vh;
+}
+
+.moment-pin:last-child {
+  height: 125vh;
 }
 
 .moment-card {
@@ -490,6 +496,32 @@ h2 {
   height: 100%;
   object-fit: cover;
   border-radius: 0;
+  transform: scale(1.04);
+  will-change: transform;
+}
+
+@supports (animation-timeline: view()) {
+  .moment-pin img {
+    animation: moment-drift linear both;
+    animation-timeline: view();
+    animation-range: cover 0% cover 100%;
+  }
+
+  @keyframes moment-drift {
+    from {
+      transform: scale(1.03);
+    }
+    to {
+      transform: scale(1.1);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moment-card img {
+    transform: none;
+    animation: none;
+  }
 }
 
 .moment-card::after {
@@ -674,75 +706,6 @@ textarea {
   font-size: 0.9rem;
 }
 
-.contact-cloud {
-  position: fixed;
-  right: 1.1rem;
-  bottom: 1.6rem;
-  z-index: 30;
-  width: 118px;
-  height: 76px;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  color: var(--ink);
-  animation: cloud-float 5s ease-in-out infinite;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.contact-cloud.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  animation: none;
-  transform: translateY(10px);
-}
-
-.contact-cloud-shape {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  fill: var(--white);
-  filter: drop-shadow(0 12px 22px rgba(45, 44, 46, 0.16));
-  transition: filter 0.3s ease;
-}
-
-.contact-cloud span {
-  position: relative;
-  z-index: 1;
-  margin-top: 0.45rem;
-  font-family: var(--sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-}
-
-.contact-cloud:hover {
-  animation-play-state: paused;
-  transform: translateY(-4px);
-}
-
-.contact-cloud:hover .contact-cloud-shape {
-  fill: var(--teal-4);
-  filter: drop-shadow(0 16px 26px rgba(45, 44, 46, 0.2));
-}
-
-@keyframes cloud-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-cloud {
-    animation: none;
-  }
-}
-
 @media (max-width: 800px) {
   body {
     font-size: 1rem;
@@ -796,7 +759,7 @@ textarea {
   }
 
   .hero-caption {
-    padding: 0 1.25rem calc(6.4rem + env(safe-area-inset-bottom));
+    padding: 0 1.25rem calc(3.2rem + env(safe-area-inset-bottom));
   }
 
   h1 {
@@ -834,6 +797,14 @@ textarea {
     padding-inline: 0.4rem;
   }
 
+  .moment-pin {
+    height: 170dvh;
+  }
+
+  .moment-pin:last-child {
+    height: 118dvh;
+  }
+
   .moment-card {
     top: 4.2rem;
     height: calc(100dvh - 5rem);
@@ -865,19 +836,6 @@ textarea {
 
   .chapter .feature-photo img {
     aspect-ratio: 4 / 3;
-  }
-
-  .contact-cloud {
-    right: max(0.5rem, env(safe-area-inset-right));
-    bottom: max(0.7rem, env(safe-area-inset-bottom));
-    width: 76px;
-    height: 50px;
-  }
-
-  .contact-cloud span {
-    font-size: 0.52rem;
-    letter-spacing: 0.16em;
-    margin-top: 0.2rem;
   }
 
   .menu-overlay a {

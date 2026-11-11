@@ -77,24 +77,12 @@ export default function App() {
   const [openChapter, setOpenChapter] = useState<string | null>(null);
   const [sent, setSent] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [formInView, setFormInView] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const form = document.getElementById("kontakt");
-    if (!form) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setFormInView(entry.isIntersecting),
-      { threshold: 0.28 },
-    );
-    observer.observe(form);
-    return () => observer.disconnect();
   }, []);
 
   function closeMenu() {
@@ -210,13 +198,15 @@ export default function App() {
         <h2>Priče koje smo već ispričali</h2>
         <div className="moment-stack">
           {moments.map((item) => (
-            <figure key={item.src} className="moment-card">
-              <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
-              <figcaption>
-                <h3>{item.quote}</h3>
-                <p>{item.kicker}</p>
-              </figcaption>
-            </figure>
+            <article className="moment-pin" key={item.src}>
+              <figure className="moment-card">
+                <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
+                <figcaption>
+                  <h3>{item.quote}</h3>
+                  <p>{item.kicker}</p>
+                </figcaption>
+              </figure>
+            </article>
           ))}
         </div>
       </section>
@@ -288,20 +278,6 @@ export default function App() {
           )}
         </div>
       </section>
-
-      <a
-        className={`contact-cloud${menuOpen || formInView ? " is-hidden" : ""}`}
-        href="#kontakt"
-        aria-label="Idite na obrazac za upit"
-      >
-        <svg className="contact-cloud-shape" viewBox="0 0 200 120" aria-hidden="true">
-          <ellipse cx="58" cy="72" rx="38" ry="30" />
-          <ellipse cx="100" cy="52" rx="46" ry="38" />
-          <ellipse cx="144" cy="70" rx="36" ry="28" />
-          <rect x="32" y="70" width="128" height="32" rx="16" />
-        </svg>
-        <span>Upit</span>
-      </a>
 
       <footer className="footer">
         <nav>
