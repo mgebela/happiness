@@ -8,8 +8,8 @@ export function useReveal() {
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (motion.matches) return;
 
-    const nodes = Array.from(document.querySelectorAll(".reveal"));
     document.documentElement.classList.add("has-reveal");
+
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -18,13 +18,11 @@ export function useReveal() {
           io.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      { threshold: 0.08 }
     );
-    nodes.forEach((node) => io.observe(node));
 
-    return () => {
-      io.disconnect();
-      document.documentElement.classList.remove("has-reveal");
-    };
+    document.querySelectorAll(".reveal:not(.is-visible)").forEach((node) => io.observe(node));
+
+    return () => io.disconnect();
   }, [pathname]);
 }

@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
+import { Gallery } from "./Gallery";
 import { Mark } from "./Logo";
 import { moments, photo, services } from "./content";
 
@@ -23,19 +24,6 @@ function Hero({
         </video>
       )}
     </section>
-  );
-}
-
-function Strip({ items }: { items: { src: string; alt: string; position: string }[] }) {
-  if (!items.length) return null;
-  return (
-    <div className="strip">
-      {items.map((item) => (
-        <figure className="frame reveal" key={item.src}>
-          <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
-        </figure>
-      ))}
-    </div>
   );
 }
 
@@ -101,7 +89,7 @@ export function MomentsPage() {
         <p className="label">Trenuci</p>
         <p className="lede">Priče koje smo već ispričali.</p>
       </section>
-      <Strip items={moments} />
+      <Gallery items={moments} />
       <section className="prose reveal">
         <EnquireCta />
       </section>
@@ -133,7 +121,7 @@ export function ServicePage() {
           </p>
         ))}
       </section>
-      <Strip items={service.extras} />
+      <Gallery items={service.extras} />
       <section className="prose service-end reveal">
         <Link className="btn" to="/upit">
           Pošaljite upit
