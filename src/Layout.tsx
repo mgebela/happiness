@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { menuLinks } from "./content";
 import { Logo } from "./Logo";
+import { useReveal } from "./useReveal";
 
 export function ScrollTop() {
   const { pathname } = useLocation();
@@ -41,6 +42,8 @@ export default function Layout() {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
+
+  useReveal();
 
   const showMark = menuOpen || pastLanding;
   const onSageHero = isHome && !pastLanding && !menuOpen;
@@ -89,43 +92,6 @@ export default function Layout() {
       <div id="sadrzaj">
         <Outlet />
       </div>
-
-      <footer className="footer">
-        <div className="footer-top">
-          <div>
-            <p className="label">Studio</p>
-            <p>
-              Happiness by Tihana
-              <br />
-              Franjevačka 1b
-              <br />
-              31000 Osijek
-            </p>
-          </div>
-          <div>
-            <p className="label">Kontakt</p>
-            <p>
-              <a href="tel:+385911601974">091 160 1974</a>
-              <br />
-              <a href="mailto:tihana@studio-happiness.hr">tihana@studio-happiness.hr</a>
-            </p>
-          </div>
-          <div>
-            <p className="label">Instagram</p>
-            <p>
-              <a href="https://instagram.com/happinessytihana" target="_blank" rel="noreferrer">
-                @happinessytihana
-              </a>
-            </p>
-          </div>
-          <Logo invert mark={false} />
-        </div>
-        <div className="footer-bottom">
-          <p>
-            Studio Happiness · Osijek · All about <em>events</em>
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

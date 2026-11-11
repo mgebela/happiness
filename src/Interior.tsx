@@ -1,32 +1,7 @@
-import { FormEvent, useLayoutEffect, useState } from "react";
-import { Link, Navigate, useLocation, useParams } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Mark } from "./Logo";
 import { moments, photo, services } from "./content";
-
-function useReveal() {
-  const { pathname } = useLocation();
-  useLayoutEffect(() => {
-    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (motion.matches) return;
-    const nodes = Array.from(document.querySelectorAll(".reveal"));
-    document.documentElement.classList.add("has-reveal");
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          io.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
-    );
-    nodes.forEach((node) => io.observe(node));
-    return () => {
-      io.disconnect();
-      document.documentElement.classList.remove("has-reveal");
-    };
-  }, [pathname]);
-}
 
 function Hero({
   src,
@@ -56,7 +31,7 @@ function Strip({ items }: { items: { src: string; alt: string; position: string 
   return (
     <div className="strip">
       {items.map((item) => (
-        <figure key={item.src}>
+        <figure className="frame reveal" key={item.src}>
           <img src={photo(item.src)} alt={item.alt} style={{ objectPosition: item.position }} />
         </figure>
       ))}
@@ -67,15 +42,14 @@ function Strip({ items }: { items: { src: string; alt: string; position: string 
 function EnquireCta() {
   return (
     <p className="cta-wrap reveal">
-      <Link className="text-cta" to="/upit">
-        Pošaljite upit →
+      <Link className="btn" to="/upit">
+        Pošaljite upit
       </Link>
     </p>
   );
 }
 
 export function AboutPage() {
-  useReveal();
   return (
     <>
       <section className="prose prose-page reveal">
@@ -91,7 +65,9 @@ export function AboutPage() {
         </p>
       </section>
       <figure className="portrait reveal">
-        <img src={photo("tihana.jpg")} alt="Tihana Tomljanović vodi simboličnu ceremoniju pod cvjetnim lukom" />
+        <span className="frame">
+          <img src={photo("tihana.jpg")} alt="Tihana Tomljanović vodi simboličnu ceremoniju pod cvjetnim lukom" />
+        </span>
       </figure>
       <section className="prose reveal">
         <p className="lede">
@@ -107,7 +83,6 @@ export function AboutPage() {
 }
 
 export function MomentsPage() {
-  useReveal();
   return (
     <>
       <Hero src="gallery-02.jpg" alt="Poljubac pod vatrometom" position="center 78%" />
@@ -126,7 +101,6 @@ export function MomentsPage() {
 export function ServicePage() {
   const { slug } = useParams();
   const service = services.find((item) => item.id === slug);
-  useReveal();
 
   if (!service) return <Navigate to="/" replace />;
 
@@ -158,7 +132,6 @@ export function ServicePage() {
 
 export function ContactPage() {
   const [sent, setSent] = useState(false);
-  useReveal();
 
   function onInquire(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -205,7 +178,7 @@ export function ContactPage() {
             Poruka
             <textarea name="note" required placeholder="Lokacija, broj gostiju, što vam je važno…" />
           </label>
-          <button className="text-cta" type="submit">
+          <button className="btn" type="submit">
             Pošaljite upit
           </button>
         </form>
