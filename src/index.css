@@ -366,12 +366,17 @@ video {
 
 .prose-page {
   padding-top: 4.5rem;
+  padding-bottom: 2.4rem;
 }
 
 .portrait {
-  margin: 0 auto 2rem;
+  margin: 0 auto;
   max-width: 28rem;
-  padding: 0 8vw 5rem;
+  padding: 0 8vw;
+}
+
+.portrait + .prose {
+  padding-top: 2.4rem;
 }
 
 .portrait img {
@@ -695,6 +700,10 @@ textarea::placeholder {
   .enquire-page,
   .prose-page {
     padding-top: 3.2rem;
+  }
+
+  .portrait + .prose {
+    padding-top: 1.8rem;
   }
 
   .lede {
