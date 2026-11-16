@@ -1,12 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Logo } from "./Logo";
 import { useReveal } from "./useReveal";
 
 export function ScrollTop() {
   const { pathname, hash } = useLocation();
+  const firstLoad = useRef(true);
+
   useEffect(() => {
+    const openingHome = firstLoad.current && pathname === "/";
+    firstLoad.current = false;
+
     const go = () => {
+      if (openingHome) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+        return;
+      }
       if (hash) {
         const target = document.querySelector(hash);
         if (target) {
