@@ -1,11 +1,13 @@
+@import "./fonts.css";
+
 :root {
   --teal: #7ab7ad;
   --teal-2: #97c7bf;
   --teal-3: #c7e1dd;
   --teal-4: #e2efed;
-  --accent: #506b67;
-  --sage-deep: #4a615e;
-  --sage-hover: #445654;
+  --accent: #4a635f;
+  --sage-deep: #37675d;
+  --sage-hover: #2f5a51;
   --ink: #2d2c2e;
   --midnight: #2d2c2e;
   --paper: #eeedea;
@@ -122,6 +124,18 @@ video {
   text-transform: uppercase;
 }
 
+h1.label,
+h2.label {
+  margin: 0 0 1.6rem;
+  font-size: 0.72rem;
+  font-weight: 400;
+  line-height: inherit;
+}
+
+.service-block h2.label {
+  margin-bottom: 1rem;
+}
+
 .landing {
   position: relative;
   min-height: 100vh;
@@ -129,23 +143,14 @@ video {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--sage);
+  background: var(--sage-deep);
   color: var(--paper);
 }
 
 .landing-mark {
   position: relative;
   z-index: 1;
-  animation: fade-in 0.65s ease both;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  opacity: 1;
 }
 
 .landing-mark .logo {
@@ -162,10 +167,13 @@ video {
 
 .landing-mark .logo-type {
   gap: 0;
+  opacity: 1;
 }
 
 .landing-mark .logo-happiness,
 .landing-mark .logo-by {
+  display: block;
+  opacity: 1;
   font-size: 1em;
   letter-spacing: -0.03em;
   line-height: 0.9;
@@ -681,7 +689,7 @@ textarea::placeholder {
   justify-items: center;
 }
 
-.thanks h3 {
+.thanks h2 {
   margin: 0;
   font-family: var(--compact);
   font-size: 2.4rem;
@@ -705,7 +713,7 @@ textarea::placeholder {
 }
 
 .footer {
-  background: var(--sage);
+  background: var(--sage-deep);
   color: var(--paper);
   padding: 2.35rem 4.5vw 2.2rem;
 }
@@ -727,7 +735,7 @@ textarea::placeholder {
 }
 
 .footer .label {
-  color: rgba(238, 237, 234, 0.72);
+  color: var(--paper);
   margin-bottom: 0.8rem;
   font-size: 0.62rem;
   letter-spacing: 0.18em;
@@ -853,10 +861,6 @@ textarea::placeholder {
 
   form {
     grid-template-columns: 1fr;
-  }
-
-  .landing-mark {
-    animation-duration: 0.42s;
   }
 
   .landing-mark .logo {

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Logo } from "./Logo";
+import { Seo } from "./seo";
 import { useReveal } from "./useReveal";
 
 export function ScrollTop() {
@@ -38,13 +39,14 @@ export default function Layout() {
 
   return (
     <div className="site">
+      <Seo />
       <a className="skip-link" href="#sadrzaj">
         Preskočite na sadržaj
       </a>
 
-      <div id="sadrzaj">
+      <main id="sadrzaj">
         <Outlet />
-      </div>
+      </main>
 
       <footer className="footer">
         <div className="footer-bar">

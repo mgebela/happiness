@@ -8,17 +8,182 @@
       name="description"
       content="Happiness by Tihana — vjenčanja i događanja iz Osijeka. Organizacija i koordinacija vjenčanja, simbolični matičar, konzultacije, eventi i moderacija."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preload" href="/fonts/outfit-latin-400.woff2" as="font" type="font/woff2" crossorigin />
     <title>Happiness by Tihana — All about events</title>
+    <link rel="canonical" href="https://happiness-by-tihana.netlify.app/" />
+    <meta name="robots" content="index, follow" />
     <link rel="ard" href="https://happiness-by-tihana.netlify.app/.well-known/ard.json" />
+    <style>
+      @font-face {
+        font-family: "Outfit";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url("/fonts/outfit-latin-400.woff2") format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      :root {
+        --sage-deep: #37675d;
+        --paper: #eeedea;
+        --ink: #2d2c2e;
+        --lockup: "Outfit", "Helvetica Neue", Arial, sans-serif;
+      }
+      html,
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      #root,
+      .site {
+        min-height: 100vh;
+      }
+      .skip-link {
+        position: fixed;
+        left: 1rem;
+        top: -4.5rem;
+        z-index: 80;
+        padding: 0.7rem 1rem;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.72rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      .skip-link:focus,
+      .skip-link:focus-visible {
+        top: 1rem;
+      }
+      .landing {
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: var(--sage-deep);
+        color: var(--paper);
+      }
+      .landing-mark {
+        position: relative;
+        z-index: 1;
+        opacity: 1;
+      }
+      .logo {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 0.72rem;
+        align-items: start;
+        text-align: left;
+        width: max-content;
+        font-size: clamp(2.4rem, 6vw, 3.7rem);
+        color: var(--paper);
+      }
+      .logo .mark {
+        grid-row: 1 / span 2;
+        width: 1.35em;
+        height: 1.8em;
+        display: block;
+      }
+      .logo-type {
+        display: grid;
+        align-content: start;
+        gap: 0;
+        opacity: 1;
+      }
+      .logo-happiness,
+      .logo-by {
+        display: block;
+        font-family: var(--lockup);
+        font-weight: 400;
+        font-size: 1em;
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        text-transform: lowercase;
+        opacity: 1;
+      }
+      .logo-by em,
+      .logo-tag em {
+        font-style: normal;
+        color: var(--paper);
+      }
+      .logo-tag {
+        margin-top: 0.38em;
+        font-family: var(--lockup);
+        font-size: 0.26em;
+        font-weight: 400;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+      }
+      .noscript-contact {
+        margin: 0;
+        padding: 1.5rem 8vw 2rem;
+        background: var(--sage-deep);
+        color: var(--paper);
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 1.05rem;
+        line-height: 1.5;
+      }
+      .noscript-contact p {
+        margin: 0 0 0.4rem;
+      }
+      .noscript-contact a {
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+      @media (max-width: 800px) {
+        .logo {
+          font-size: 2.02rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="site">
+        <a class="skip-link" href="#sadrzaj">Preskočite na sadržaj</a>
+        <main id="sadrzaj">
+          <section class="landing">
+            <a class="landing-mark" href="#pregled" aria-label="Nastavite na pregled">
+              <span class="logo invert">
+                <img
+                  class="mark"
+                  src="/mark-invert.svg"
+                  width="48"
+                  height="64"
+                  alt=""
+                  decoding="sync"
+                  fetchpriority="high"
+                />
+                <span class="logo-type">
+                  <span class="logo-happiness">happiness</span>
+                  <span class="logo-by">by <em>tihana</em></span>
+                  <span class="logo-tag">all about <em>events</em></span>
+                </span>
+              </span>
+            </a>
+          </section>
+        </main>
+      </div>
+      <noscript>
+        <section class="noscript-contact">
+          <p>Happiness by Tihana — All about events.</p>
+          <p>Franjevačka 1b, 31000 Osijek</p>
+          <p>
+            <a href="mailto:tihana@studio-happiness.hr">tihana@studio-happiness.hr</a>
+            ·
+            <a href="tel:+385911601974">091 160 1974</a>
+          </p>
+          <p>
+            <a href="https://www.instagram.com/happinessbytihana">@happinessbytihana</a>
+          </p>
+        </section>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

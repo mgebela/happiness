@@ -4,30 +4,44 @@ type LockupProps = {
   compact?: boolean;
   invert?: boolean;
   mark?: boolean;
+  priority?: boolean;
   className?: string;
 };
 
-const TEAL = ["#7AB7AD", "#97C7BF", "#C7E1DD", "#E2EFED"];
-const PAPER = ["#eeedea", "#e4e2de", "#d4d0ca", "#c3beb7"];
-
-export function Mark({ className = "", invert = false }: { className?: string; invert?: boolean }) {
-  const fills = invert ? PAPER : TEAL;
+export function Mark({
+  className = "",
+  invert = false,
+  priority = false,
+}: {
+  className?: string;
+  invert?: boolean;
+  priority?: boolean;
+}) {
   return (
-    <svg className={`mark ${className}`} viewBox="0 0 48 64" aria-hidden="true">
-      <rect width="48" height="16" fill={fills[0]} />
-      <rect x="16" y="16" width="16" height="16" fill={fills[1]} />
-      <rect x="16" y="32" width="16" height="16" fill={fills[2]} />
-      <rect x="16" y="48" width="16" height="16" fill={fills[3]} />
-    </svg>
+    <img
+      className={`mark${className ? ` ${className}` : ""}`}
+      src={invert ? "/mark-invert.svg" : "/mark.svg"}
+      width={48}
+      height={64}
+      alt=""
+      decoding={priority ? "sync" : "async"}
+      fetchPriority={priority ? "high" : "auto"}
+    />
   );
 }
 
-export function Lockup({ compact = false, invert = false, mark = true, className = "" }: LockupProps) {
+export function Lockup({
+  compact = false,
+  invert = false,
+  mark = true,
+  priority = false,
+  className = "",
+}: LockupProps) {
   return (
     <span
       className={`logo${compact ? " compact" : ""}${invert ? " invert" : ""}${mark ? "" : " wordmark"}${className ? ` ${className}` : ""}`}
     >
-      {mark && <Mark invert={invert} />}
+      {mark && <Mark invert={invert} priority={priority} />}
       <span className="logo-type">
         <span className="logo-happiness">happiness</span>
         <span className="logo-by">

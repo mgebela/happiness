@@ -53,7 +53,7 @@ export function AboutPage() {
   return (
     <>
       <section className="prose prose-page reveal">
-        <p className="label">O meni</p>
+        <h1 className="label">O meni</h1>
         <p className="lede">Ja sam Tihana.</p>
         <p className="lede">
           Osnivačica sam Studija Happiness iz Osijeka. Više od 15 godina bavim se organizacijom
@@ -111,10 +111,10 @@ export function WeddingsPage() {
     <>
       <Hero src="hero-poster.jpg" alt="Mlada se okreće prema kameri, mladoženja stoji u parku" position="center 42%" video="hero.mp4" />
       <section className="prose reveal">
-        <p className="label">Vjenčanja</p>
+        <h1 className="label">Vjenčanja</h1>
         {chapters.map((chapter) => (
           <div className="service-block" key={chapter.id}>
-            <p className="label">{chapter.title}</p>
+            <h2 className="label">{chapter.title}</h2>
             {chapter.paragraphs.map((text) => (
               <p className="lede" key={text.slice(0, 28)}>
                 {text}
@@ -156,7 +156,7 @@ export function ServicePage() {
         video={isFilm ? "hero.mp4" : undefined}
       />
       <section className="prose reveal">
-        <p className="label">{service.title}</p>
+        <h1 className="label">{service.title}</h1>
         {service.paragraphs.map((text) => (
           <p className="lede" key={text.slice(0, 28)}>
             {text}
@@ -194,14 +194,14 @@ export function ContactPage() {
 
   return (
     <section className="enquire enquire-page reveal">
-      <p className="label">Upit</p>
+      <h1 className="label">Upit</h1>
       <p className="lede">
         Javite se za vjenčanje, ceremoniju, event ili konzultacije. Odgovaram osobno.
       </p>
       {sent ? (
         <div className="thanks" role="status">
           <Mark />
-          <h3>Hvala vam.</h3>
+          <h2>Hvala vam.</h2>
           <p>Upit je zaprimljen. {sent.thanks}</p>
         </div>
       ) : (

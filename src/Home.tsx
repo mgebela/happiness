@@ -42,7 +42,7 @@ export default function Home() {
     <>
       <section className="landing">
         <a className="landing-mark" href="#pregled" aria-label="Nastavite na pregled">
-          <Lockup invert />
+          <Lockup invert priority />
         </a>
       </section>
 

@@ -23,6 +23,36 @@
   [headers.values]
     Content-Type = "application/json; charset=utf-8"
 
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+
+[[redirects]]
+  from = "/organizacija"
+  to = "/vjencanja"
+  status = 301
+
+[[redirects]]
+  from = "/koordinacija"
+  to = "/vjencanja"
+  status = 301
+
+[[redirects]]
+  from = "/konzultacije"
+  to = "/vjencanja"
+  status = 301
+
+[[redirects]]
+  from = "/trenuci"
+  to = "/"
+  status = 301
+
 [[redirects]]
   from = "/ai-catalog.json"
   to = "/.well-known/ard.json"
