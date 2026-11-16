@@ -152,7 +152,7 @@ video {
   width: max-content;
   align-items: start;
   column-gap: 0.72rem;
-  font-size: clamp(1.85rem, 4.6vw, 2.85rem);
+  font-size: clamp(2.4rem, 6vw, 3.7rem);
 }
 
 .landing-mark .logo .mark {
@@ -852,7 +852,7 @@ textarea::placeholder {
   }
 
   .landing-mark .logo {
-    font-size: 1.55rem;
+    font-size: 2.02rem;
   }
 
   .has-reveal .reveal {
