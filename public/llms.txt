@@ -1,0 +1,21 @@
+# Happiness by Tihana
+
+> Vjenčanja i događanja iz Osijeka: organizacija i koordinacija vjenčanja, konzultacije, simbolični matičar, eventi i moderacija.
+
+Happiness by Tihana je brend Tihane iz Osijeka. Stranice su na hrvatskom. Javna komunikacija je Happiness by Tihana. Upiti se šalju osobno.
+
+## Stranice
+
+- [Naslovnica](https://happiness-by-tihana.netlify.app/): pregled usluga i izbornik
+- [O meni](https://happiness-by-tihana.netlify.app/o-meni): Tihana, osnivačica, iskustvo i način rada
+- [Vjenčanja](https://happiness-by-tihana.netlify.app/vjencanja): organizacija, koordinacija i konzultacije vjenčanja
+- [Simbolični matičar](https://happiness-by-tihana.netlify.app/maticar): personalizirane ceremonije, i na engleskom jeziku
+- [Eventi](https://happiness-by-tihana.netlify.app/eventi): privatna i poslovna događanja od ideje do izvedbe
+- [Moderacija](https://happiness-by-tihana.netlify.app/moderacija): vođenje programa i protokola
+- [Upit](https://happiness-by-tihana.netlify.app/upit): forma za vjenčanje, ceremoniju, event ili konzultacije
+
+## Kontakt
+
+- [E-mail](mailto:tihana@studio-happiness.hr): tihana@studio-happiness.hr
+- [Telefon](tel:+385911601974): 091 160 1974, Osijek, Franjevačka 1b
+- [Instagram](https://www.instagram.com/happinessbytihana): @happinessbytihana
