@@ -15,7 +15,7 @@
   --sans: "Inter", "Helvetica Neue", Arial, sans-serif;
   --compact: var(--display);
   --wide: var(--sans);
-  --lockup: "Anybody", "Arial Narrow", sans-serif;
+  --lockup: "Outfit", "Helvetica Neue", Arial, sans-serif;
 }
 
 *,
@@ -156,8 +156,8 @@ video {
 }
 
 .landing-mark .logo .mark {
-  width: 1.28em;
-  height: 1.71em;
+  width: 1.35em;
+  height: 1.8em;
 }
 
 .landing-mark .logo-type {
@@ -167,14 +167,15 @@ video {
 .landing-mark .logo-happiness,
 .landing-mark .logo-by {
   font-size: 1em;
-  letter-spacing: -0.05em;
-  line-height: 0.86;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
 }
 
 .landing-mark .logo-tag {
-  font-size: 0.28em;
-  margin-top: 0.42em;
-  letter-spacing: 0.34em;
+  font-family: var(--lockup);
+  font-size: 0.26em;
+  margin-top: 0.38em;
+  letter-spacing: 0.32em;
 }
 
 .logo,
@@ -207,12 +208,10 @@ video {
 .logo-happiness,
 .logo-by {
   font-family: var(--lockup);
-  font-stretch: 75%;
-  font-variation-settings: "wdth" 75;
   font-weight: 400;
   font-size: 1.28rem;
-  line-height: 0.86;
-  letter-spacing: -0.04em;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
   text-transform: lowercase;
 }
 
