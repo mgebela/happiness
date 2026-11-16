@@ -54,28 +54,26 @@ export function AboutPage() {
     <>
       <section className="prose prose-page reveal">
         <p className="label">O meni</p>
+        <p className="lede">Ja sam Tihana.</p>
         <p className="lede">
-          Ja sam Tihana Tomljanović, osnivačica brenda Happiness by Tihana iz Osijeka. Već više od
-          15 godina moj posao je stvarati vjenčanja i događanja koja ljudi pamte cijeli život.
-        </p>
-        <p className="lede">
-          Iza mene su brojni projekti, od intimnih ceremonija do privatnih i poslovnih evenata, ali
-          ono što mi je uvijek najvažnije su zadovoljni klijenti i odnos koji s njima gradim kroz
-          cijeli proces.
+          Osnivačica sam Studija Happiness iz Osijeka. Više od 15 godina bavim se organizacijom
+          vjenčanja, privatnih i poslovnih događanja, vođenjem ceremonija i moderiranjem.
         </p>
       </section>
       <figure className="portrait reveal">
         <span className="frame">
-          <img src={photo("tihana.jpg")} alt="Tihana Tomljanović, crno-bijeli portret" />
+          <img src={photo("tihana.jpg")} alt="Tihana, crno-bijeli portret" />
         </span>
       </figure>
       <section className="prose reveal">
         <p className="lede">
-          Svaki događaj za mene je nova priča. Upravo zato svakom paru ili klijentu pristupam
-          individualno, s puno pažnje prema detaljima i atmosferi koju zajedno stvaramo. Povjerenje,
-          otvorena komunikacija i dobra energija temelj su svake uspješne suradnje.
+          Iza mene su brojni projekti, različiti ljudi i još više priča. U svakom poslu važni su mi
+          povjerenje, jasna komunikacija i profesionalan odnos. Klijentima pristupam individualno, uz
+          razumijevanje njihovih želja i odgovornost prema svakom dogovoru.
         </p>
-        <p className="lede">Najljepši dio mog posla su ljudi i njihove priče.</p>
+        <p className="lede">Vjerujem u dobru pripremu, promišljene detalje i sigurnu izvedbu.</p>
+        <p className="lede">Moj posao počinje razumijevanjem ljudi, a završava dobro odrađenim poslom.</p>
+        <p className="lede">Kad je važno, važno je tko stoji iza toga.</p>
       </section>
       <section className="prose service-end reveal">
         <Link className="btn" to="/upit">
@@ -114,10 +112,6 @@ export function WeddingsPage() {
       <Hero src="hero-poster.jpg" alt="Mlada se okreće prema kameri, mladoženja stoji u parku" position="center 42%" video="hero.mp4" />
       <section className="prose reveal">
         <p className="label">Vjenčanja</p>
-        <p className="lede">
-          Vjenčanje može biti potpuno preuzeto, vođeno na dan ili usmjeravano kroz konzultacije.
-          Odabirete razinu podrške, a ja brinem da sve stoji.
-        </p>
         {chapters.map((chapter) => (
           <div className="service-block" key={chapter.id}>
             <p className="label">{chapter.title}</p>

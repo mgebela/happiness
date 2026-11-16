@@ -395,6 +395,10 @@ video {
   text-align: center;
 }
 
+.service-block:first-of-type {
+  margin-top: 0;
+}
+
 .service-block .label {
   margin-bottom: 1rem;
 }

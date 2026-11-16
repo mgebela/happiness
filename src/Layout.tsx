@@ -41,7 +41,7 @@ export default function Layout() {
         <div className="footer-bar">
           <div className="footer-cols">
             <div>
-              <p className="label">Studio</p>
+              <p className="label">Adresa</p>
               <p>
                 Happiness by Tihana
                 <br />
