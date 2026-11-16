@@ -8,6 +8,7 @@ export type Shot = {
   caption?: string;
   width?: number;
   height?: number;
+  position?: string;
 };
 
 export type Service = {

@@ -18,6 +18,7 @@ export function Gallery({ items }: { items: Shot[] }) {
             height={item.height}
             loading={index < 2 ? "eager" : "lazy"}
             decoding="async"
+            style={item.position ? { objectPosition: item.position } : undefined}
           />
         </figure>
       ))}

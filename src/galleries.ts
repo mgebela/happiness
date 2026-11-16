@@ -87,5 +87,7 @@ export const galleries = {
     { src: "moderacija-14.jpg", alt: "Tihana za mikrofonom", caption: "Mikrofon", width: 1600, height: 1600 },
     { src: "moderacija-15.jpg", alt: "Dvorana s publikom", caption: "Publika", width: 1600, height: 1066 },
     { src: "moderacija-16.jpg", alt: "Priprema govora na otvorenom", caption: "Priprema", width: 1201, height: 1800 },
+    { src: "moderacija-17.jpg", alt: "Tihana vodi panel Uplift – Prijatelj hrvatske kuhinje", caption: "Panel", width: 1024, height: 576, position: "82% 38%" },
+    { src: "moderacija-18.jpg", alt: "Panel Stories Experience Premium Croatia, Tihana za mikrofonom", caption: "Panel", width: 1024, height: 576, position: "90% 32%" },
   ],
 };
