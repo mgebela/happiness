@@ -1,0 +1,29 @@
+{
+  "entries": [
+    {
+      "identifier": "urn:air:happiness-by-tihana.netlify.app:website",
+      "displayName": "Happiness by Tihana",
+      "description": "Vjenčanja i događanja iz Osijeka: organizacija, koordinacija, simbolični matičar, eventi i moderacija.",
+      "type": "text/html",
+      "url": "https://happiness-by-tihana.netlify.app/",
+      "representativeQueries": [
+        "Tko je Happiness by Tihana?",
+        "Organizacija vjenčanja u Osijeku",
+        "Simbolični matičar na engleskom",
+        "Kako poslati upit za event ili moderaciju"
+      ]
+    },
+    {
+      "identifier": "urn:air:happiness-by-tihana.netlify.app:llms",
+      "displayName": "Happiness by Tihana — sažetak za jezične modele",
+      "description": "Markdown pregled stranica, usluga i kontakta.",
+      "type": "text/markdown",
+      "url": "https://happiness-by-tihana.netlify.app/llms.txt",
+      "representativeQueries": [
+        "Koje usluge nudi Happiness by Tihana?",
+        "Koje su stranice na webu?",
+        "Kako se javiti Tihani?"
+      ]
+    }
+  ]
+}
