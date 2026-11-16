@@ -70,8 +70,8 @@ export default function Layout() {
             <div>
               <p className="label">Instagram</p>
               <p>
-                <a href="https://instagram.com/happinessytihana" target="_blank" rel="noreferrer">
-                  @happinessytihana
+                <a href="https://www.instagram.com/happinessbytihana" target="_blank" rel="noreferrer">
+                  @happinessbytihana
                 </a>
               </p>
             </div>
