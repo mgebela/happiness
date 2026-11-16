@@ -2,7 +2,8 @@ import { FormEvent, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Gallery } from "./Gallery";
 import { Mark } from "./Logo";
-import { moments, photo, services } from "./content";
+import { galleries } from "./galleries";
+import { photo, services, weddingIds } from "./content";
 
 function Hero({
   src,
@@ -54,8 +55,8 @@ export function AboutPage() {
       <section className="prose prose-page reveal">
         <p className="label">O meni</p>
         <p className="lede">
-          Ja sam Tihana Tomljanović, osnivačica Studija Happiness iz Osijeka. Već više od 15 godina
-          moj posao je stvarati vjenčanja i događanja koja ljudi pamte cijeli život.
+          Ja sam Tihana Tomljanović, osnivačica brenda Happiness by Tihana iz Osijeka. Već više od
+          15 godina moj posao je stvarati vjenčanja i događanja koja ljudi pamte cijeli život.
         </p>
         <p className="lede">
           Iza mene su brojni projekti, od intimnih ceremonija do privatnih i poslovnih evenata, ali
@@ -65,7 +66,7 @@ export function AboutPage() {
       </section>
       <figure className="portrait reveal">
         <span className="frame">
-          <img src={photo("tihana.jpg")} alt="Tihana Tomljanović vodi simboličnu ceremoniju pod cvjetnim lukom" />
+          <img src={photo("tihana.jpg")} alt="Tihana Tomljanović, crno-bijeli portret" />
         </span>
       </figure>
       <section className="prose reveal">
@@ -75,7 +76,12 @@ export function AboutPage() {
           otvorena komunikacija i dobra energija temelj su svake uspješne suradnje.
         </p>
         <p className="lede">Najljepši dio mog posla su ljudi i njihove priče.</p>
-        <EnquireCta />
+      </section>
+      <section className="prose service-end reveal">
+        <Link className="btn" to="/upit">
+          Pošaljite upit
+        </Link>
+        <BackLink />
       </section>
     </>
   );
@@ -89,7 +95,7 @@ export function MomentsPage() {
         <p className="label">Trenuci</p>
         <p className="lede">Priče koje smo već ispričali.</p>
       </section>
-      <Gallery items={moments} />
+      <Gallery items={galleries.vjencanja} />
       <section className="prose reveal">
         <EnquireCta />
       </section>
@@ -97,8 +103,50 @@ export function MomentsPage() {
   );
 }
 
+export function WeddingsPage() {
+  const chapters = weddingIds
+    .map((id) => services.find((item) => item.id === id))
+    .filter((item): item is NonNullable<typeof item> => Boolean(item));
+  const shots = chapters.flatMap((item) => item.extras).filter((shot, index, all) => all.findIndex((entry) => entry.src === shot.src) === index);
+
+  return (
+    <>
+      <Hero src="hero-poster.jpg" alt="Mlada se okreće prema kameri, mladoženja stoji u parku" position="center 42%" video="hero.mp4" />
+      <section className="prose reveal">
+        <p className="label">Vjenčanja</p>
+        <p className="lede">
+          Vjenčanje može biti potpuno preuzeto, vođeno na dan ili usmjeravano kroz konzultacije.
+          Odabirete razinu podrške, a ja brinem da sve stoji.
+        </p>
+        {chapters.map((chapter) => (
+          <div className="service-block" key={chapter.id}>
+            <p className="label">{chapter.title}</p>
+            {chapter.paragraphs.map((text) => (
+              <p className="lede" key={text.slice(0, 28)}>
+                {text}
+              </p>
+            ))}
+          </div>
+        ))}
+      </section>
+      <Gallery items={shots} />
+      <section className="prose service-end reveal">
+        <Link className="btn" to="/upit">
+          Pošaljite upit
+        </Link>
+        <BackLink />
+      </section>
+    </>
+  );
+}
+
 export function ServicePage() {
   const { slug } = useParams();
+
+  if (slug && weddingIds.includes(slug as (typeof weddingIds)[number])) {
+    return <Navigate to="/vjencanja" replace />;
+  }
+
   const service = services.find((item) => item.id === slug);
 
   if (!service) return <Navigate to="/" replace />;
@@ -219,6 +267,7 @@ export function ContactPage() {
           </button>
         </form>
       )}
+      <BackLink />
     </section>
   );
 }
