@@ -539,29 +539,6 @@ video {
   object-fit: cover;
 }
 
-.stack-card figcaption {
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 11%;
-  z-index: 2;
-  margin: 0;
-  text-align: center;
-  color: var(--paper);
-  font-family: var(--compact);
-  font-size: clamp(1.55rem, 3.2vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  text-shadow: 0 0.4rem 2.2rem rgba(45, 44, 46, 0.35);
-  pointer-events: none;
-}
-
-.stack-card::after {
-  background: linear-gradient(to top, rgba(45, 44, 46, 0.38), transparent 42%);
-  opacity: 1;
-}
-
 .has-reveal .stack-card.reveal {
   transform: none;
 }
