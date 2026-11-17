@@ -5,27 +5,27 @@ export function Gallery({ items }: { items: Shot[] }) {
 
   return (
     <div className="stack">
-      {items.map((item, index) => (
-        <figure
-          className="stack-card frame"
-          key={`${item.src}-${index}`}
-          style={
-            item.width && item.height
-              ? { ["--ratio" as string]: `${item.width} / ${item.height}` }
-              : undefined
-          }
-        >
-          <img
-            src={photo(item.src)}
-            alt={item.alt}
-            width={item.width}
-            height={item.height}
-            loading={index < 2 ? "eager" : "lazy"}
-            decoding="async"
-            style={item.position ? { objectPosition: item.position } : undefined}
-          />
-        </figure>
-      ))}
+      {items.map((item, index) => {
+        const wide = Boolean(item.width && item.height && item.width >= item.height);
+        return (
+          <figure
+            className={`stack-card${wide ? " is-wide" : ""}`}
+            key={`${item.src}-${index}`}
+            style={{ zIndex: index + 1 }}
+          >
+            <img
+              src={photo(item.src)}
+              alt={item.alt}
+              width={item.width}
+              height={item.height}
+              loading={index < 4 ? "eager" : "lazy"}
+              decoding="async"
+              draggable={false}
+              style={!wide && item.position ? { objectPosition: item.position } : undefined}
+            />
+          </figure>
+        );
+      })}
     </div>
   );
 }
