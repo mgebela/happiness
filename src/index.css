@@ -145,19 +145,7 @@ html:has(.site-inner) {
 }
 
 .site-inner .stack-card {
-  top: calc(var(--header-offset) + 0.5rem);
-  height: calc(100vh - var(--header-offset) - 1.6rem);
-  height: calc(100dvh - var(--header-offset) - 1.6rem);
-}
-
-.site-inner .stack-card.is-wide {
-  height: auto;
   max-height: calc(100dvh - var(--header-offset) - 1.6rem);
-}
-
-.site-inner .stack-card:last-child {
-  position: relative;
-  top: auto;
 }
 
 :focus {
@@ -588,41 +576,26 @@ h2.label {
 }
 
 .stack {
+  display: grid;
+  gap: 0.85rem;
   padding: 0 4.5vw 18vh;
 }
 
 .stack-card {
-  position: sticky;
-  top: 1.35rem;
-  height: calc(100vh - 4.2rem);
-  height: calc(100dvh - 4.2rem);
-  margin: 0 0 1.15rem;
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: var(--ratio, 3 / 4);
+  margin: 0;
   overflow: hidden;
   border-radius: 1.35rem;
-}
-
-.stack-card.is-wide {
-  height: auto;
-  aspect-ratio: var(--ratio, 3 / 2);
-  max-height: calc(100dvh - 2.4rem);
-}
-
-.stack-card:last-child {
-  margin-bottom: 0;
+  background: var(--paper);
 }
 
 .stack-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.stack-card.is-wide img {
   object-fit: contain;
-}
-
-.has-reveal .stack-card.reveal {
-  transform: none;
 }
 
 @media (hover: hover) {
@@ -635,7 +608,7 @@ h2.label {
   }
 
   .stack-card:hover img {
-    transform: scale(1.03);
+    transform: none;
   }
 }
 
@@ -974,14 +947,6 @@ textarea::placeholder {
   }
 
   .site-inner .stack-card {
-    top: calc(var(--header-offset) + 0.4rem);
-    height: calc(100vh - var(--header-offset) - 1.2rem);
-    height: calc(100dvh - var(--header-offset) - 1.2rem);
-  }
-
-  .site-inner .stack-card.is-wide,
-  .stack-card.is-wide {
-    height: auto;
     max-height: calc(100dvh - var(--header-offset) - 1.2rem);
   }
 
@@ -998,23 +963,12 @@ textarea::placeholder {
   }
 
   .stack {
+    gap: 0.7rem;
     padding: 0 0.85rem 12vh;
   }
 
   .stack-card {
-    top: 0.75rem;
-    height: calc(100vh - 2.4rem);
-    height: calc(100dvh - 2.4rem);
-    margin-bottom: 0.75rem;
     border-radius: 1rem;
-  }
-
-  .stack-card.is-wide {
-    height: auto;
-  }
-
-  .has-reveal .stack-card.reveal {
-    transform: none;
   }
 
   form {
