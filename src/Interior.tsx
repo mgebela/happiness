@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Gallery } from "./Gallery";
+import { BackLink } from "./Layout";
 import { Mark } from "./Logo";
 import { galleries } from "./galleries";
 import { photo, services, weddingIds } from "./content";
@@ -35,17 +36,6 @@ function EnquireCta() {
         Pošaljite upit
       </Link>
     </p>
-  );
-}
-
-function BackLink() {
-  return (
-    <Link className="back-link" to="/#pregled">
-      <svg className="back-link-icon" viewBox="0 0 28 12" aria-hidden="true">
-        <path d="M6 1 L1 6 L6 11 M1 6 H27" fill="none" stroke="currentColor" strokeWidth="1" />
-      </svg>
-      Natrag
-    </Link>
   );
 }
 
@@ -181,14 +171,51 @@ const contactWays = [
 ] as const;
 
 type ContactWay = (typeof contactWays)[number]["id"];
+type FormField = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
+const missingMessages: Record<string, string> = {
+  name: "Unesite ime i prezime.",
+  email: "Unesite e-mail adresu.",
+  phone: "Unesite broj telefona.",
+  note: "Unesite poruku.",
+  contact: "Odaberite način kontakta.",
+  date: "Unesite datum.",
+};
+
+function validityMessage(field: FormField) {
+  const { validity } = field;
+  if (validity.valueMissing) return missingMessages[field.name] ?? "Ovo polje je obavezno.";
+  if (validity.typeMismatch && field instanceof HTMLInputElement && field.type === "email") {
+    return "Unesite ispravnu e-mail adresu.";
+  }
+  if (validity.badInput) return "Unesite ispravnu vrijednost.";
+  return "Provjerite ovo polje.";
+}
+
+function hrValidity() {
+  return {
+    onInvalid(event: FormEvent<FormField>) {
+      event.currentTarget.setCustomValidity(validityMessage(event.currentTarget));
+    },
+    onInput(event: FormEvent<FormField>) {
+      event.currentTarget.setCustomValidity("");
+    },
+  };
+}
 
 export function ContactPage() {
   const [sent, setSent] = useState<(typeof contactWays)[number] | null>(null);
   const [way, setWay] = useState<ContactWay>("email");
+  const [serviceError, setServiceError] = useState(false);
   const needsPhone = way !== "email";
 
   function onInquire(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const chosen = new FormData(event.currentTarget).getAll("service");
+    if (!chosen.length) {
+      setServiceError(true);
+      return;
+    }
     setSent(contactWays.find((item) => item.id === way) ?? contactWays[0]);
   }
 
@@ -205,14 +232,21 @@ export function ContactPage() {
           <p>Upit je zaprimljen. {sent.thanks}</p>
         </div>
       ) : (
-        <form onSubmit={onInquire}>
+        <form onSubmit={onInquire} lang="hr">
           <label>
             Ime i prezime
-            <input name="name" required placeholder="Vaše ime" autoComplete="name" />
+            <input name="name" required placeholder="Vaše ime" autoComplete="name" {...hrValidity()} />
           </label>
           <label>
             E-mail
-            <input name="email" type="email" required placeholder="vas@email.com" autoComplete="email" />
+            <input
+              name="email"
+              type="email"
+              required
+              placeholder="vas@email.com"
+              autoComplete="email"
+              {...hrValidity()}
+            />
           </label>
           <label>
             Telefon
@@ -222,6 +256,7 @@ export function ContactPage() {
               required={needsPhone}
               placeholder="091 …"
               autoComplete="tel"
+              {...hrValidity()}
             />
           </label>
           <label>
@@ -230,6 +265,7 @@ export function ContactPage() {
               name="contact"
               value={way}
               onChange={(event) => setWay(event.target.value as ContactWay)}
+              {...hrValidity()}
             >
               {contactWays.map((item) => (
                 <option key={item.id} value={item.id}>
@@ -239,22 +275,39 @@ export function ContactPage() {
             </select>
           </label>
           <label>
-            Usluga
-            <select name="service" defaultValue="organizacija">
-              {services.map((service) => (
-                <option key={service.id} value={service.id}>
-                  {service.title}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
             Datum
-            <input name="date" type="date" />
+            <input name="date" type="date" {...hrValidity()} />
           </label>
+          <fieldset className={`full service-picks${serviceError ? " is-invalid" : ""}`}>
+            <legend>Usluge</legend>
+            <p className="field-hint">Možete odabrati više opcija.</p>
+            <div className="check-list">
+              {services.map((service) => (
+                <label key={service.id} className="check-option">
+                  <input
+                    type="checkbox"
+                    name="service"
+                    value={service.id}
+                    onChange={() => setServiceError(false)}
+                  />
+                  {service.title}
+                </label>
+              ))}
+            </div>
+            {serviceError && (
+              <p className="field-error" role="alert">
+                Odaberite barem jednu uslugu.
+              </p>
+            )}
+          </fieldset>
           <label className="full">
             Poruka
-            <textarea name="note" required placeholder="Lokacija, broj gostiju, što vam je važno…" />
+            <textarea
+              name="note"
+              required
+              placeholder="Lokacija, broj gostiju, što vam je važno…"
+              {...hrValidity()}
+            />
           </label>
           <button className="btn" type="submit">
             Pošaljite upit

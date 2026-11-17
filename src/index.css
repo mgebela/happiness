@@ -5,9 +5,9 @@
   --teal-2: #97c7bf;
   --teal-3: #c7e1dd;
   --teal-4: #e2efed;
-  --accent: #4a635f;
-  --sage-deep: #37675d;
-  --sage-hover: #2f5a51;
+  --accent: #506b67;
+  --sage-deep: #4a615e;
+  --sage-hover: #445654;
   --ink: #2d2c2e;
   --midnight: #2d2c2e;
   --paper: #eeedea;
@@ -18,6 +18,8 @@
   --compact: var(--display);
   --wide: var(--sans);
   --lockup: "Outfit", "Helvetica Neue", Arial, sans-serif;
+  --header-h: 3.6rem;
+  --header-offset: calc(var(--header-h) + env(safe-area-inset-top, 0px));
 }
 
 *,
@@ -100,6 +102,59 @@ video {
   top: 1rem;
 }
 
+html:has(.site-inner) {
+  scroll-padding-top: var(--header-offset);
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--header-offset);
+  padding: env(safe-area-inset-top, 0px) max(1.25rem, env(safe-area-inset-right, 0px)) 0
+    max(1.25rem, env(safe-area-inset-left, 0px));
+  background: var(--paper);
+  border-bottom: 1px solid rgba(45, 44, 46, 0.08);
+}
+
+.site-header .back-link {
+  margin-top: 0;
+  justify-self: auto;
+  padding-right: 0.8rem;
+}
+
+.site-header .back-link:hover,
+.site-header .back-link:focus-visible {
+  transform: none;
+}
+
+.site-header-brand {
+  display: flex;
+  align-items: center;
+  color: var(--ink);
+}
+
+.site-inner #sadrzaj {
+  padding-top: var(--header-offset);
+}
+
+.site-inner .stack-card {
+  top: calc(var(--header-offset) + 0.5rem);
+  height: calc(100vh - var(--header-offset) - 1.6rem);
+  height: calc(100dvh - var(--header-offset) - 1.6rem);
+}
+
+.site-inner .stack-card:last-child {
+  position: relative;
+  top: auto;
+}
+
 :focus {
   outline: none;
 }
@@ -143,7 +198,7 @@ h2.label {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--sage-deep);
+  background: var(--sage);
   color: var(--paper);
 }
 
@@ -458,7 +513,7 @@ h2.label {
 
 .enquire-page {
   min-height: 72vh;
-  padding-top: 4.5rem;
+  padding-top: 3.2rem;
 }
 
 .enquire-page .back-link {
@@ -468,7 +523,7 @@ h2.label {
 }
 
 .prose-page {
-  padding-top: 4.5rem;
+  padding-top: 3.2rem;
   padding-bottom: 2.4rem;
 }
 
@@ -595,6 +650,73 @@ form .btn {
   grid-column: 1 / -1;
 }
 
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.service-picks legend {
+  padding: 0;
+  font-family: var(--wide);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.field-hint {
+  margin: 0.45rem 0 0.85rem;
+  font-family: var(--compact);
+  font-size: 1.05rem;
+  letter-spacing: 0;
+  color: var(--accent);
+}
+
+.check-list {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.check-option {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 2.65rem;
+  margin: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-family: var(--compact);
+  font-size: 1.15rem;
+  cursor: pointer;
+}
+
+.check-option input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  padding: 0;
+  flex: none;
+  border: 0;
+  accent-color: var(--sage-deep);
+  cursor: pointer;
+}
+
+.check-option:has(:checked) {
+  color: var(--sage-deep);
+}
+
+.field-error {
+  margin: 0.7rem 0 0;
+  font-family: var(--compact);
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--sage-deep);
+}
+
 label {
   display: grid;
   gap: 0.4rem;
@@ -713,7 +835,7 @@ textarea::placeholder {
 }
 
 .footer {
-  background: var(--sage-deep);
+  background: var(--sage);
   color: var(--paper);
   padding: 2.35rem 4.5vw 2.2rem;
 }
@@ -828,7 +950,18 @@ textarea::placeholder {
 
   .enquire-page,
   .prose-page {
-    padding-top: 3.2rem;
+    padding-top: 2.4rem;
+  }
+
+  .site-header {
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  }
+
+  .site-inner .stack-card {
+    top: calc(var(--header-offset) + 0.4rem);
+    height: calc(100vh - var(--header-offset) - 1.2rem);
+    height: calc(100dvh - var(--header-offset) - 1.2rem);
   }
 
   .portrait + .prose {

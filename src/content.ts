@@ -61,7 +61,7 @@ export const services: Service[] = [
     paragraphs: [
       "Ceremonija koja prati vas, vašu priču i način na koji želite obilježiti svoje vjenčanje.",
       "Simboličnu ceremoniju oblikujem individualno, prema vašim željama i osobnosti. Lokacija, tekst, glazba, osobni zavjeti i svi ostali elementi dogovaraju se zajedno.",
-      "Ceremonije se mogu održati na otvorenom, u prirodi, vinogradima, parkovima ili na lokacijama koje za vas imaju posebno značenje.",
+      "Ceremonije se mogu održati na otvorenom, u prirodi, u vinogradima, u parkovima ili na lokacijama koje za vas imaju posebno značenje.",
       "Ceremoniju vodim i na engleskom jeziku.",
     ],
     extras: galleries.maticar,
@@ -104,7 +104,7 @@ export const services: Service[] = [
     position: "center 58%",
     alt: "Lounge kutak na otvorenom, drvene klupe i bijeli jastuci",
     paragraphs: [
-      "Od ideje do realizacije, organiziram privatna i poslovna događanja s jasnim konceptom i preciznom izvedbom.",
+      "Od ideje do realizacije organiziram privatna i poslovna događanja s jasnim konceptom i preciznom izvedbom.",
       "Svaki projekt započinje razumijevanjem cilja i potreba klijenta. Planiram sadržaj, produkciju, logistiku i sve organizacijske detalje, povezujući ljude i suradnike u funkcionalnu cjelinu.",
       "Bez obzira na format i veličinu događanja, cilj je uvijek isti: kvalitetna organizacija i profesionalna izvedba.",
     ],

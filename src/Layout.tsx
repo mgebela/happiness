@@ -1,48 +1,83 @@
-import { useEffect, useRef } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import { Logo } from "./Logo";
+import { useLayoutEffect, useRef } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { Lockup, Logo } from "./Logo";
 import { Seo } from "./seo";
 import { useReveal } from "./useReveal";
+
+const backTo = { pathname: "/", hash: "#pregled" } as const;
+
+export function BackLink({ className = "" }: { className?: string }) {
+  return (
+    <Link className={`back-link${className ? ` ${className}` : ""}`} to={backTo}>
+      <svg className="back-link-icon" viewBox="0 0 28 12" aria-hidden="true">
+        <path d="M6 1 L1 6 L6 11 M1 6 H27" fill="none" stroke="currentColor" strokeWidth="1" />
+      </svg>
+      Natrag
+    </Link>
+  );
+}
+
+function SiteHeader() {
+  return (
+    <header className="site-header">
+      <BackLink className="site-header-back" />
+      <Link className="site-header-brand" to={backTo} aria-label="Happiness by Tihana, natrag na pregled">
+        <Lockup compact />
+      </Link>
+    </header>
+  );
+}
 
 export function ScrollTop() {
   const { pathname, hash } = useLocation();
   const firstLoad = useRef(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const openingHome = firstLoad.current && pathname === "/";
     firstLoad.current = false;
+
+    let frame = 0;
+    let tries = 0;
 
     const go = () => {
       if (openingHome) {
         window.scrollTo({ top: 0, left: 0, behavior: "auto" });
         return;
       }
+
       if (hash) {
         const target = document.querySelector(hash);
         if (target) {
-          target.scrollIntoView();
+          target.scrollIntoView({ behavior: "auto", block: "start" });
           return;
         }
+        if (tries++ < 16) {
+          frame = requestAnimationFrame(go);
+        }
+        return;
       }
-      window.scrollTo(0, 0);
+
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     };
 
     go();
-    const frame = requestAnimationFrame(go);
     return () => cancelAnimationFrame(frame);
   }, [pathname, hash]);
   return null;
 }
 
 export default function Layout() {
+  const { pathname } = useLocation();
+  const inner = pathname !== "/";
   useReveal();
 
   return (
-    <div className="site">
+    <div className={inner ? "site site-inner" : "site"}>
       <Seo />
       <a className="skip-link" href="#sadrzaj">
         Preskočite na sadržaj
       </a>
+      {inner && <SiteHeader />}
 
       <main id="sadrzaj">
         <Outlet />
