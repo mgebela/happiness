@@ -203,20 +203,48 @@ function hrValidity() {
   };
 }
 
+function postUpit(form: HTMLFormElement) {
+  const data = new FormData(form);
+  const params = new URLSearchParams();
+  params.set("form-name", "upit");
+  for (const [key, value] of data.entries()) {
+    if (key === "form-name") continue;
+    params.append(key, String(value));
+  }
+  const chosen = data.getAll("service").map(String);
+  const labels = services.filter((item) => chosen.includes(item.id)).map((item) => item.title);
+  if (labels.length) params.set("usluge", labels.join(", "));
+  return fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: params.toString(),
+  }).then((res) => {
+    if (!res.ok) throw new Error("send-failed");
+  });
+}
+
 export function ContactPage() {
   const [sent, setSent] = useState<(typeof contactWays)[number] | null>(null);
   const [way, setWay] = useState<ContactWay>("email");
   const [serviceError, setServiceError] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
   const needsPhone = way !== "email";
 
   function onInquire(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const chosen = new FormData(event.currentTarget).getAll("service");
+    const form = event.currentTarget;
+    const chosen = new FormData(form).getAll("service");
     if (!chosen.length) {
       setServiceError(true);
       return;
     }
-    setSent(contactWays.find((item) => item.id === way) ?? contactWays[0]);
+    setSending(true);
+    setSendError(false);
+    postUpit(form)
+      .then(() => setSent(contactWays.find((item) => item.id === way) ?? contactWays[0]))
+      .catch(() => setSendError(true))
+      .finally(() => setSending(false));
   }
 
   return (
@@ -232,7 +260,21 @@ export function ContactPage() {
           <p>Upit je zaprimljen. {sent.thanks}</p>
         </div>
       ) : (
-        <form onSubmit={onInquire} lang="hr">
+        <form
+          name="upit"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={onInquire}
+          lang="hr"
+        >
+          <input type="hidden" name="form-name" value="upit" />
+          <p className="form-hp" aria-hidden="true">
+            <label>
+              Ne ispunjavajte
+              <input name="bot-field" tabIndex={-1} autoComplete="off" />
+            </label>
+          </p>
           <label>
             Ime i prezime
             <input name="name" required placeholder="Vaše ime" autoComplete="name" {...hrValidity()} />
@@ -309,8 +351,14 @@ export function ContactPage() {
               {...hrValidity()}
             />
           </label>
-          <button className="btn" type="submit">
-            Pošaljite upit
+          {sendError && (
+            <p className="field-error full" role="alert">
+              Upit se nije mogao poslati. Pokušajte ponovno ili pišite na{" "}
+              <a href="mailto:tihana@studio-happiness.hr">tihana@studio-happiness.hr</a>.
+            </p>
+          )}
+          <button className="btn" type="submit" disabled={sending} aria-busy={sending}>
+            {sending ? "Šaljem…" : "Pošaljite upit"}
           </button>
         </form>
       )}

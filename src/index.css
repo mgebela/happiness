@@ -738,6 +738,14 @@ fieldset {
   color: var(--sage-deep);
 }
 
+.form-hp {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
 .field-error {
   margin: 0.7rem 0 0;
   font-family: var(--compact);
@@ -745,6 +753,17 @@ fieldset {
   letter-spacing: 0;
   text-transform: none;
   color: var(--sage-deep);
+}
+
+.field-error a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+  pointer-events: none;
 }
 
 label {
