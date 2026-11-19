@@ -100,9 +100,9 @@ export const services: Service[] = [
     id: "eventi",
     nav: "Eventi",
     title: "Eventi",
-    image: "dogadanja.jpg",
-    position: "center 58%",
-    alt: "Lounge kutak na otvorenom, drvene klupe i bijeli jastuci",
+    image: "eventi-20.jpg",
+    position: "center 32%",
+    alt: "Pet žena pred zidom Karat Jewellery",
     paragraphs: [
       "Od ideje do realizacije organiziram privatna i poslovna događanja s jasnim konceptom i preciznom izvedbom.",
       "Svaki projekt započinje razumijevanjem cilja i potreba klijenta. Planiram sadržaj, produkciju, logistiku i sve organizacijske detalje, povezujući ljude i suradnike u funkcionalnu cjelinu.",
