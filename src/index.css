@@ -357,7 +357,7 @@ h2.label {
   color: var(--accent);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 1100px) {
   .overview {
     padding-right: 16vw;
     column-gap: 6vw;
@@ -376,26 +376,6 @@ h2.label {
     font-size: 1rem;
     letter-spacing: 0.18em;
     padding: 0.52rem 0;
-  }
-}
-
-@media (min-width: 640px) and (max-width: 1199px) {
-  .overview {
-    padding: 4.5rem 5vw;
-    padding-right: 14vw;
-    gap: 4.5vw;
-  }
-
-  .overview-lead {
-    font-size: clamp(1.35rem, 2.7vw, 2.05rem);
-  }
-
-  .overview-follow {
-    font-size: clamp(1.05rem, 1.9vw, 1.45rem);
-  }
-
-  .overview-nav a {
-    font-size: 0.92rem;
   }
 }
 
@@ -966,9 +946,48 @@ textarea::placeholder {
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 1099px) {
   .overview {
     grid-template-columns: 1fr;
+    align-content: center;
+    min-height: 100dvh;
+    padding: 3.6rem 6vw 4.8rem;
+    gap: 4.6rem;
+  }
+
+  .overview-title {
+    width: min(100%, 78vw);
+    gap: 1.1rem;
+  }
+
+  .overview-lead,
+  .overview-follow {
+    white-space: normal;
+  }
+
+  .overview-lead {
+    font-size: clamp(2.25rem, 6.6vw, 3.7rem);
+    line-height: 1.06;
+  }
+
+  .overview-follow {
+    width: min(100%, 28ch);
+    font-size: clamp(1.32rem, 3.2vw, 1.9rem);
+  }
+
+  .overview-nav {
+    gap: 0.28rem;
+  }
+
+  .overview-nav a {
+    font-size: 0.9rem;
+    letter-spacing: 0.18em;
+    padding: 0.46rem 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .overview {
     align-content: start;
     min-height: auto;
     padding: 6.5rem 1.4rem 4.5rem;
@@ -983,13 +1002,25 @@ textarea::placeholder {
   .overview-lead {
     font-size: 1.85rem;
     line-height: 1.12;
-    white-space: normal;
   }
 
   .overview-follow {
     width: auto;
     font-size: 1.32rem;
-    white-space: normal;
+  }
+
+  .overview-nav {
+    gap: 0.15rem;
+  }
+
+  .overview-nav a {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    padding: 0.38rem 0;
+  }
+
+  .landing-mark .logo {
+    font-size: 2.02rem;
   }
 }
 
@@ -1046,10 +1077,6 @@ textarea::placeholder {
 
   form {
     grid-template-columns: 1fr;
-  }
-
-  .landing-mark .logo {
-    font-size: 2.02rem;
   }
 
   .has-reveal .reveal {
