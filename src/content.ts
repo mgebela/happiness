@@ -47,7 +47,7 @@ export const services: Service[] = [
     paragraphs: [
       "Već ste organizirali svoje vjenčanje, ali želite da netko iskusan preuzme brigu o završnim pripremama i samom danu?",
       "Prolazimo sve dogovorene detalje, izrađujemo protokol i raspored te usklađujemo rad svih uključenih. Na dan vjenčanja preuzimam koordinaciju izvođača, uzvanika i cjelokupnog programa.",
-      "Vi ste domaćini i gosti vlastitog vjenčanja. Ja brinem da sve funkcionira kako treba.",
+      "Vi ste gosti na vlastitom vjenčanju. Ja brinem da sve funkcionira kako treba.",
     ],
     extras: [],
   },
