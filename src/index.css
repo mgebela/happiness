@@ -666,7 +666,7 @@ h2.label {
   margin-bottom: 2.8rem;
 }
 
-form {
+form:not([hidden]) {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.4rem 1.8rem;
@@ -1094,7 +1094,7 @@ textarea::placeholder {
     border-radius: 1rem;
   }
 
-  form {
+  form:not([hidden]) {
     grid-template-columns: 1fr;
   }
 
